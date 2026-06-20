@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeshwanth Rao - Network & Voice Engineering</title>
+    <style>
+        :root { --bg: #0a0a0a; --accent: #007BFF; --text: #e0e0e0; --card: #161616; }
+        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; }
+        .dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: auto; }
+        .card { background: var(--card); padding: 20px; border: 1px solid #333; border-radius: 12px; transition: 0.3s; }
+        .card:hover { border-color: var(--accent); box-shadow: 0 0 15px rgba(0, 123, 255, 0.2); }
+        h1 { color: var(--accent); margin-bottom: 5px; }
+        .status { color: #00ff88; font-size: 0.8rem; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 10px; border-left: 3px solid var(--accent); padding-left: 10px; }
+    </style>
+</head>
+<body>
+    <header style="text-align: center; margin-bottom: 50px;">
+        <h1>YESHWANTH RAO YARASI</h1>
+        <p>Unified Communications | VoIP Architecture | Network Engineering</p>
+        <div class="status">● System Status: Online & Monitoring</div>
+    </header>
+
+    <div class="dashboard">
+        <section class="card">
+            <h3>Professional Experience</h3>
+            <ul>
+                <li><strong>Network Engineer</strong><br>University of Iowa Health Care[cite: 2, 3]</li>
+                <li><strong>Senior System Engineer (UC SME)</strong><br>Cognizant[cite: 1, 3]</li>
+                <li><strong>VoIP Network Engineer</strong><br>Mindtree[cite: 1, 3]</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3>Core Technical Stack</h3>
+            <p>Voice & Telephony, SIP/VoIP Troubleshooting, Microsoft Teams Voice, Five9, RingCentral, Avaya PBX[cite: 1, 3].</p>
+            <p>Automation, Network QoS, SBC Edge, Packet Analysis, HIPAA Compliance[cite: 1, 2, 3].</p>
+        </section>
+
+        <section class="card">
+            <h3>Key Projects & Focus</h3>
+            <p><strong>PSX Route Manager:</strong> Internal routing utility for streamlined network migration and flow management.</p>
+            <p><strong>Cloud Migrations:</strong> Enterprise transitions from legacy PBX to modern UCaaS environments[cite: 3].</p>
+        </section>
+    </div>
+</body>
+</html>
