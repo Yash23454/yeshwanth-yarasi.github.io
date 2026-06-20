@@ -23,6 +23,12 @@
             --bg-dark: #1a0000;
         }
 
+        /* CRT RETRO MODE VARIABLES */
+        body.crt-mode { --bg-dark: #050505; --voip-blue: #ffb000; --cyber-green: #ffb000; --net-purple: #ffb000; color: #ffb000; text-shadow: 0 0 3px #ffb000; }
+        body.crt-mode::after { content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); z-index: 9999; background-size: 100% 3px, 3px 100%; pointer-events: none; }
+        .crt-off-anim { animation: turn-off 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        @keyframes turn-off { 0% { transform: scale(1, 1.3) translate3d(0, 0, 0); filter: brightness(1); } 60% { transform: scale(1, 0.001) translate3d(0, 0, 0); filter: brightness(10); } 100% { transform: scale(0, 0.0001) translate3d(0, 0, 0); filter: brightness(0); } }
+
         body, html {
             margin: 0; padding: 0; width: 100%;
             background-color: var(--bg-dark); color: #d3d3d3;
@@ -31,7 +37,7 @@
             transition: background-color 0.5s ease;
         }
 
-        #networkCanvas { position: fixed; top: 0; left: 0; z-index: 0; opacity: 0.4; }
+        #networkCanvas { position: fixed; top: 0; left: 0; z-index: 0; opacity: 0.4; pointer-events: none; }
         .container { position: relative; z-index: 1; max-width: 1250px; margin: 0 auto; padding: 20px; }
         .mono { font-family: 'Share Tech Mono', monospace; }
         
@@ -40,8 +46,20 @@
         .glow-green { text-shadow: 0 0 10px var(--cyber-green); color: var(--cyber-green); transition: 0.3s; }
         .glow-purple { text-shadow: 0 0 10px var(--net-purple); color: var(--net-purple); transition: 0.3s; }
         
-        section { min-height: 80vh; padding: 80px 0; border-bottom: 1px solid rgba(0, 229, 255, 0.1); opacity: 0; transform: translateY(50px); transition: all 1s ease-out; }
-        section.visible { opacity: 1; transform: translateY(0); }
+        section { padding: 80px 0; border-bottom: 1px solid rgba(0, 229, 255, 0.1); }
+
+        /* DECRYPTED PROFILE PICTURE */
+        .profile-container { position: relative; width: 150px; height: 150px; margin-bottom: 20px; border-radius: 10px; overflow: hidden; border: 2px solid var(--cyber-green); box-shadow: 0 0 15px rgba(0,255,65,0.2); }
+        .profile-pic { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(200%) blur(3px); transition: all 0.5s ease; background-color: #000; }
+        .glitch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) 1px, transparent 1px, transparent 2px); pointer-events: none; z-index: 2; transition: opacity 0.5s; display: flex; justify-content: center; align-items: center; text-align: center;}
+        .decrypt-text { color: var(--cyber-green); font-family: 'Share Tech Mono'; font-size: 0.8rem; background: rgba(0,0,0,0.8); padding: 2px 5px; animation: blinker 1s infinite; }
+        .profile-container:hover .profile-pic { filter: grayscale(0%) contrast(100%) blur(0px); }
+        .profile-container:hover .glitch-overlay { opacity: 0; }
+
+        /* LIVE PACKET SNIFFER */
+        #packet-stream { position: fixed; top: 0; left: 20px; width: 350px; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; opacity: 0.7;}
+        .packet { color: rgba(0, 229, 255, 0.4); font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; position: absolute; bottom: -20px; white-space: nowrap; animation: floatUp 8s linear forwards; }
+        @keyframes floatUp { to { transform: translateY(-100vh); opacity: 0; } }
 
         /* INTRUSION ALERT SYSTEM */
         #security-alert { position: fixed; top: 20px; right: -400px; width: 350px; background: rgba(15, 0, 0, 0.9); border: 1px solid #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); padding: 15px; z-index: 9999; font-family: 'Share Tech Mono'; color: #ff0000; transition: right 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
@@ -50,19 +68,8 @@
         #alert-text { font-size: 0.9rem; line-height: 1.4; white-space: pre-wrap; }
 
         /* WELCOME FEATURE MESSAGE */
-        #feature-welcome-msg {
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: all 1s ease-out;
-            background: rgba(0, 229, 255, 0.05);
-            border: 1px solid rgba(0, 229, 255, 0.3);
-            border-left: 4px solid var(--voip-blue);
-            padding: 15px 25px;
-            margin-bottom: 30px;
-            border-radius: 4px;
-            max-width: 800px;
-        }
-        #feature-welcome-msg.show { opacity: 1; transform: translateY(0); }
+        #feature-welcome-msg { opacity: 0; transform: translateY(-20px); transition: all 1s ease-out; background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.3); border-left: 4px solid var(--voip-blue); padding: 15px 25px; margin-bottom: 30px; border-radius: 4px; max-width: 800px; display: none; }
+        #feature-welcome-msg.show { opacity: 1; transform: translateY(0); display: block; }
         #feature-welcome-msg h3 { font-size: 1.2rem; color: var(--voip-blue); margin: 0 0 10px 0; border: none; letter-spacing: 1px;}
         #feature-welcome-msg p { color: #d3d3d3; margin: 0 0 10px 0; font-size: 1.1rem; }
         #feature-welcome-msg ul { list-style-type: none; padding-left: 0; margin: 0; }
@@ -70,7 +77,7 @@
         #feature-welcome-msg b { color: #fff; }
 
         /* HERO SECTION */
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; border: none; padding-top: 100px; }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; border: none; padding-top: 50px; }
         .hero h1 { font-size: 4.5rem; margin: 0; border-left: 5px solid var(--voip-blue); padding-left: 20px; transition: 0.3s; }
         .typewriter { font-size: 1.6rem; color: var(--voip-blue); margin-top: 10px; transition: 0.3s; }
         .hero-desc { max-width: 900px; font-size: 1.3rem; margin-top: 30px; line-height: 1.6; color: #b0b0b0; }
@@ -89,7 +96,6 @@
         .cli-output::-webkit-scrollbar { width: 8px; }
         .cli-output::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 4px; }
         .cli-output::-webkit-scrollbar-thumb { background: var(--cyber-green); border-radius: 4px; }
-        
         .cli-output pre { color: var(--voip-blue); font-size: 0.75rem; text-shadow: 0 0 5px var(--voip-blue); margin-top: 0; font-family: 'Share Tech Mono', monospace; line-height: 1.2; transition: 0.3s; }
         .cli-input-line { display: flex; align-items: center; border-top: 1px dashed #333; padding-top: 15px; }
         .cli-prompt { color: var(--voip-blue); margin-right: 10px; font-weight: bold; transition: 0.3s; }
@@ -170,32 +176,16 @@
             .hero h1 { font-size: 3.5rem; }
             .cli-terminal { height: 400px; }
         }
-        
-        /* 1. DECRYPTED PROFILE PICTURE */
-        .profile-container { position: relative; width: 150px; height: 150px; margin-bottom: 20px; border-radius: 10px; overflow: hidden; border: 2px solid var(--cyber-green); box-shadow: 0 0 15px rgba(0,255,65,0.2); }
-        .profile-pic { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(200%) blur(3px); transition: all 0.5s ease; }
-        .glitch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) 1px, transparent 1px, transparent 2px); pointer-events: none; z-index: 2; transition: opacity 0.5s; display: flex; justify-content: center; align-items: center; text-align: center;}
-        .decrypt-text { color: var(--cyber-green); font-family: 'Share Tech Mono'; font-size: 0.8rem; background: rgba(0,0,0,0.8); padding: 2px 5px; animation: blinker 1s infinite; }
-        .profile-container:hover .profile-pic { filter: grayscale(0%) contrast(100%) blur(0px); }
-        .profile-container:hover .glitch-overlay { opacity: 0; }
-
-        /* 2. LIVE PACKET SNIFFER */
-        #packet-stream { position: fixed; top: 0; left: 20px; width: 350px; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; opacity: 0.7;}
-        .packet { color: rgba(0, 229, 255, 0.4); font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; position: absolute; bottom: -20px; white-space: nowrap; animation: floatUp 8s linear forwards; }
-        @keyframes floatUp { to { transform: translateY(-100vh); opacity: 0; } }
-
-        /* 3. RETRO CRT MODE (KONAMI CODE) */
-        body.crt-mode { --bg-dark: #050505; --voip-blue: #ffb000; --cyber-green: #ffb000; --net-purple: #ffb000; color: #ffb000; text-shadow: 0 0 3px #ffb000; }
-        body.crt-mode::after { content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); z-index: 9999; background-size: 100% 3px, 3px 100%; pointer-events: none; }
-        .crt-off-anim { animation: turn-off 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-        @keyframes turn-off { 0% { transform: scale(1, 1.3) translate3d(0, 0, 0); filter: brightness(1); } 60% { transform: scale(1, 0.001) translate3d(0, 0, 0); filter: brightness(10); } 100% { transform: scale(0, 0.0001) translate3d(0, 0, 0); filter: brightness(0); } }
     </style>
 </head>
 <body>
+    <!-- NETWORK CANVAS -->
     <canvas id="networkCanvas"></canvas>
     
+    <!-- LIVE PACKET SNIFFER -->
     <div id="packet-stream"></div>
 
+    <!-- SECURITY ALERT BOX -->
     <div id="security-alert">
         <div class="alert-header">
             <div class="alert-blinker"></div>
@@ -204,9 +194,10 @@
         <div id="alert-text"></div>
     </div>
 
+    <!-- SOFTPHONE EASTER EGG -->
     <div class="phone-toggle" onclick="togglePhone()">📞</div>
     <div class="softphone-panel" id="softphone">
-        <div style="color: #888; font-family: monospace; font-size: 0.8rem; margin-bottom: 5px; text-align: center;">SECURE DIALER [AVAYA_NODE] Try *#004# </div>
+        <div style="color: #888; font-family: monospace; font-size: 0.8rem; margin-bottom: 5px; text-align: center;">SECURE DIALER [AVAYA_NODE]<br>Try *#004# </div>
         <div class="sp-display" id="sp-display"></div>
         <div class="sp-grid">
             <div class="sp-btn" onclick="dial('1')">1<span class="sp-btn-sub"></span></div>
@@ -225,13 +216,17 @@
         </div>
     </div>
 
+    <!-- EASTER EGG OVERLAY -->
     <div id="easter-egg-overlay">
         <div class="overlay-text" id="overlay-msg">CLASSIFIED DATA UNLOCKED<br>> INITIALIZING RESUME PROTOCOL...</div>
     </div>
 
+    <!-- MAIN CONTAINER -->
     <div class="container">
         
-        <section class="hero visible">
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <!-- WELCOME FEATURE MESSAGE -->
             <div id="feature-welcome-msg" class="mono">
                 <h3>> CONNECTION ESTABLISHED</h3>
                 <p>Thank you for visiting! While you are here, please try some crazy features on this page:</p>
@@ -239,9 +234,11 @@
                     <li>[1] Try typing <b>'sudo su'</b> in the System Terminal below.</li>
                     <li>[2] Dial the secret code on the Softphone dialer (bottom right icon).</li>
                     <li>[3] Type <b>'reboot'</b> during system override to revert changes.</li>
+                    <li>[4] Press <b>Up Up Down Down Left Right Left Right B A</b> on your keyboard for Retro Mode.</li>
                 </ul>
             </div>
             
+            <!-- DECRYPTED IMAGE FEATURE -->
             <div class="profile-container">
                 <img src="profile.png" alt="Yeshwanth" class="profile-pic" onerror="this.onerror=null; this.src='https://via.placeholder.com/150/000000/00ff41?text=YASH';">
                 <div class="glitch-overlay">
@@ -268,7 +265,8 @@
             </div>
         </section>
 
-        <section class="scroll-anim">
+        <!-- CRAZY INTERACTIVE CLI TERMINAL + DIAGNOSTICS -->
+        <section>
             <h2 class="glow-green">> System Terminal & Live Diagnostics</h2>
             <p class="mono" style="color: #b0b0b0; font-size: 1.2rem;">Try typing <strong>'help'</strong> or <strong>'sudo su'</strong> for root access and <strong>'exit'</strong> to exit root access.</p>
             
@@ -310,7 +308,8 @@
             </div>
         </section>
 
-        <section class="scroll-anim">
+        <!-- EXPERIENCE TIMELINE -->
+        <section>
             <h2 class="glow-purple">> Command History [Experience Matrix]</h2>
             <div class="timeline">
                 
@@ -347,7 +346,8 @@
             </div>
         </section>
 
-        <section class="scroll-anim">
+        <!-- 6 FLASH CARDS (PROJECTS) -->
+        <section>
             <h2 class="glow-green">> Deployed Architectures [Projects & Execution]</h2>
             <div class="flashcard-grid">
                 
@@ -463,7 +463,8 @@
             </div>
         </section>
 
-        <section class="scroll-anim">
+        <!-- SKILLS & CERTS -->
+        <section>
             <h2 class="glow-blue">> Certified Protocols [Skill Matrix]</h2>
             <div class="skills-container">
                 
@@ -496,7 +497,8 @@
             </div>
         </section>
 
-        <section class="scroll-anim">
+        <!-- CONTACT TERMINAL -->
+        <section>
             <h2 class="glow-green">> Secure Communication Channel</h2>
             <p class="mono" style="margin-bottom: 30px; color: #888; font-size: 1.2rem;">// Establish a direct encrypted connection to my primary inbox.</p>
             
@@ -533,6 +535,7 @@
 
     </div>
 
+    <!-- SCRIPTS -->
     <script>
         // --- 1. INTRUSION DETECTION ALERT SCRIPT ---
         const alertMsg = "[!] WARNING: Unidentified connection detected.\n> Tracing IP Route...\n> Analyzing Packets...\n> Bypassing Firewall...\n> Security clearance verified.\n> Welcome, Guest User.";
@@ -545,14 +548,10 @@
                 if (i === alertMsg.length) {
                     clearInterval(typeWriter);
                     setTimeout(() => { 
-                        // Slide the alert out
                         document.getElementById('security-alert').style.right = '-400px'; 
-                        
-                        // Show the Welcome Feature Message after alert leaves
                         setTimeout(() => {
                             document.getElementById('feature-welcome-msg').classList.add('show');
-                        }, 500); // Waits half a second before fading in
-                        
+                        }, 500); 
                     }, 5000);
                 }
             }, 50);
@@ -609,7 +608,7 @@
         const cliOutput = document.getElementById('cli-output');
 
         const commands = {
-            'help': 'Commands: \n - whoami \n - skills \n - sudo su (Admin override)\n - exit (Logout of root)',
+            'help': 'Commands: \n - whoami \n - skills \n - sudo su (Admin override)\n - exit (Logout of root)\n - reboot (Restart system)',
             'whoami': 'Name: Yeshwanth Rao Yarasi\nRole: Senior Network Engineer',
             'skills': '[VOIP]: Avaya, Teams, Five9, SBC Edge\n[NET]: QoS, VLAN, OSPF, Wireshark\n[SYS]: PowerShell, VMware, FastAPI'
         };
@@ -672,7 +671,6 @@
 
                 cliOutput.innerHTML += response + '\n';
                 cmdInput.value = '';
-                // AUTO-SCROLL FIX
                 cliOutput.scrollTop = cliOutput.scrollHeight;
             }
         });
@@ -767,10 +765,6 @@
             document.getElementById('live-jitter').innerText = (Math.random() * 1.3 + 0.8).toFixed(2) + 'ms';
         }, 2000);
 
-        // Scroll observer
-        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
-        document.querySelectorAll('.scroll-anim').forEach((el) => observer.observe(el));
-
         // --- 6. LIVE PACKET SNIFFER LOGIC ---
         const packetStream = document.getElementById('packet-stream');
         const protocols = ['TCP', 'UDP', 'SIP/2.0', 'RTP', 'TLSv1.2'];
@@ -798,7 +792,7 @@
                 if (konamiIndex === konamiCode.length) {
                     document.body.classList.add('crt-mode');
                     konamiIndex = 0;
-                    alert("RETRO SYSTEM INITIALIZED. Press 'ESC' to abort.");
+                    alert("RETRO SYSTEM INITIALIZED. Press 'ESC' or type 'reboot' in terminal to abort.");
                 }
             } else {
                 konamiIndex = 0;
