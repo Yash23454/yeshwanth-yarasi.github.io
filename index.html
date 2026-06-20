@@ -3,48 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yeshwanth Rao - Network & Voice Engineering</title>
+    <title>Yeshwanth Rao | Network & UC Architect</title>
     <style>
-        :root { --bg: #0a0a0a; --accent: #007BFF; --text: #e0e0e0; --card: #161616; }
-        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; }
-        .dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: auto; }
-        .card { background: var(--card); padding: 20px; border: 1px solid #333; border-radius: 12px; transition: 0.3s; }
-        .card:hover { border-color: var(--accent); box-shadow: 0 0 15px rgba(0, 123, 255, 0.2); }
-        h1 { color: var(--accent); margin-bottom: 5px; }
-        .status { color: #00ff88; font-size: 0.8rem; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-        ul { list-style: none; padding: 0; }
-        li { margin-bottom: 10px; border-left: 3px solid var(--accent); padding-left: 10px; }
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+        
+        body, html { 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            background-color: #050505; color: #00ff41; 
+            font-family: 'Share Tech Mono', monospace; overflow-x: hidden; 
+        }
+        
+        /* Interactive Background Canvas */
+        #networkCanvas { 
+            position: fixed; top: 0; left: 0; z-index: 0; opacity: 0.6; 
+        }
+        
+        /* Main Content Container */
+        .content { 
+            position: relative; z-index: 1; max-width: 1100px; 
+            margin: 0 auto; padding: 60px 20px; 
+        }
+        
+        /* Hacker/Glitch Name Intro */
+        .glitch { 
+            font-size: 3.5rem; font-weight: bold; text-transform: uppercase; 
+            position: relative; text-shadow: 0 0 10px #00ff41; margin-bottom: 5px; 
+        }
+        
+        /* Terminal Typing Effect */
+        .subtitle { 
+            font-size: 1.2rem; color: #00f2ff; margin-bottom: 50px; 
+            border-right: 2px solid #00f2ff; white-space: nowrap; overflow: hidden; 
+            animation: typing 3s steps(40, end), blink-caret .75s step-end infinite; 
+        }
+        
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #00f2ff; } }
+        
+        /* Dynamic Grid System */
+        .grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; 
+        }
+        
+        /* Neon Cards */
+        .card { 
+            background: rgba(0, 15, 0, 0.7); border: 1px solid #00ff41; 
+            border-radius: 8px; padding: 30px; 
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1); 
+            backdrop-filter: blur(5px); transition: all 0.4s ease; 
+            position: relative; overflow: hidden; 
+        }
+        
+        /* Hover Animation on Cards */
+        .card:hover { 
+            transform: translateY(-10px) scale(1.02); 
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.5); 
+            border-color: #00f2ff; color: #00f2ff; 
+        }
+        
+        /* Moving Scanline inside cards */
+        .card::before { 
+            content: ''; position: absolute; top: 0; left: -100%; 
+            width: 100%; height: 2px; background: #00f2ff; 
+            animation: scanline 4s linear infinite; 
+        }
+        @keyframes scanline { 100% { left: 100%; } }
+        
+        h2 { 
+            font-size: 1.5rem; border-bottom: 1px dashed #00ff41; 
+            padding-bottom: 10px; margin-top: 0; color: #fff;
+            text-shadow: 0 0 8px #fff;
+        }
+        
+        ul { list-style-type: none; padding: 0; }
+        li { margin-bottom: 15px; position: relative; padding-left: 20px; line-height: 1.5; }
+        li::before { content: '>'; position: absolute; left: 0; color: #00f2ff; font-weight: bold; }
+        
+        .highlight { color: #fff; font-weight: bold; }
+        .uptime { margin-top: 20px; font-size: 1.1rem; color: #00f2ff; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
     </style>
 </head>
 <body>
-    <header style="text-align: center; margin-bottom: 50px;">
-        <h1>YESHWANTH RAO YARASI</h1>
-        <p>Unified Communications | VoIP Architecture | Network Engineering</p>
-        <div class="status">● System Status: Online & Monitoring</div>
-    </header>
+    <!-- Background Canvas for Network Nodes -->
+    <canvas id="networkCanvas"></canvas>
+    
+    <div class="content">
+        <div class="glitch">Yeshwanth Rao Yarasi</div>
+        <div class="subtitle">> Initiating Unified Communications & Sec_Protocol...</div>
+        
+        <div class="grid">
+            <div class="card">
+                <h2>[01] EXPERIENCE_LOG</h2>
+                <ul>
+                    <li><span class="highlight">Network Engineer</span> @ University of Iowa Health Care<br>Focus: Enterprise Voice & Migrations[cite: 2, 3]</li>
+                    <li><span class="highlight">Sr. System Engineer</span> @ Cognizant<br>Focus: UC SME, SIP/VoIP, PBX to Cloud[cite: 1, 3]</li>
+                    <li><span class="highlight">VoIP Network Engineer</span> @ Mindtree<br>Focus: Call Flow, Device Management[cite: 1, 3]</li>
+                </ul>
+                <div class="uptime">> Total System Uptime: 3.5+ Years</div>
+            </div>
+            
+            <div class="card">
+                <h2>[02] TECH_ARSENAL</h2>
+                <ul>
+                    <li><span class="highlight">Voice/Telephony:</span> Avaya PBX, MS Teams Voice, Five9, RingCentral[cite: 1, 3]</li>
+                    <li><span class="highlight">Network/Sec:</span> SIP Protocol Debugging, QoS, Packet Analysis, SBC Edge[cite: 1, 3]</li>
+                    <li><span class="highlight">Infrastructure:</span> VMware, Linux/Windows Server, PowerShell Scripting[cite: 3]</li>
+                </ul>
+            </div>
 
-    <div class="dashboard">
-        <section class="card">
-            <h3>Professional Experience</h3>
-            <ul>
-                <li><strong>Network Engineer</strong><br>University of Iowa Health Care[cite: 2, 3]</li>
-                <li><strong>Senior System Engineer (UC SME)</strong><br>Cognizant[cite: 1, 3]</li>
-                <li><strong>VoIP Network Engineer</strong><br>Mindtree[cite: 1, 3]</li>
-            </ul>
-        </section>
-
-        <section class="card">
-            <h3>Core Technical Stack</h3>
-            <p>Voice & Telephony, SIP/VoIP Troubleshooting, Microsoft Teams Voice, Five9, RingCentral, Avaya PBX[cite: 1, 3].</p>
-            <p>Automation, Network QoS, SBC Edge, Packet Analysis, HIPAA Compliance[cite: 1, 2, 3].</p>
-        </section>
-
-        <section class="card">
-            <h3>Key Projects & Focus</h3>
-            <p><strong>PSX Route Manager:</strong> Internal routing utility for streamlined network migration and flow management.</p>
-            <p><strong>Cloud Migrations:</strong> Enterprise transitions from legacy PBX to modern UCaaS environments[cite: 3].</p>
-        </section>
+            <div class="card">
+                <h2>[03] EXECUTED_PROJECTS</h2>
+                <ul>
+                    <li><span class="highlight">PSX Route Manager:</span> Internal routing utility for streamlined network migration & flow management.[cite: 1]</li>
+                    <li><span class="highlight">Cloud Migrations:</span> Led large-scale enterprise transitions from legacy PBX to modern UCaaS environments.[cite: 3]</li>
+                </ul>
+            </div>
+        </div>
     </div>
+
+    <!-- JavaScript for Dynamic Network Node Animation -->
+    <script>
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        let particles = [];
+        
+        // Resize canvas dynamically
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        // Particle Class (Represents VoIP/Network Nodes)
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 1.5;
+                this.vy = (Math.random() - 0.5) * 1.5;
+                this.radius = Math.random() * 2 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                // Bounce off walls
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#00f2ff';
+                ctx.fill();
+            }
+        }
+
+        // Generate Nodes
+        for (let i = 0; i < 120; i++) {
+            particles.push(new Particle());
+        }
+
+        // Animate Connections
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                // Draw lines between close nodes to simulate network routing
+                for (let j = i; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 130) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 255, 65, ${1 - distance/130})`;
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>
