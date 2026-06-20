@@ -47,6 +47,14 @@
         .stat-number { font-size: 3rem; color: var(--voip-blue); font-weight: bold; margin-bottom: 10px; text-shadow: 0 0 10px rgba(0, 229, 255, 0.5); }
         .stat-text { font-size: 1.1rem; color: #fff; font-family: 'Share Tech Mono'; }
 
+        /* CLI Terminal Section (NEW) */
+        .cli-terminal { background: #050505; border: 1px solid var(--cyber-green); border-radius: 8px; padding: 20px; height: 350px; overflow-y: auto; box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.1); margin-top: 40px; }
+        .cli-output { color: #00ff41; margin-bottom: 10px; line-height: 1.5; font-size: 1.1rem; white-space: pre-wrap; }
+        .cli-input-line { display: flex; align-items: center; }
+        .cli-prompt { color: var(--voip-blue); margin-right: 10px; font-weight: bold; }
+        .cli-input { background: transparent; border: none; color: #fff; font-family: 'Share Tech Mono', monospace; font-size: 1.1rem; width: 80%; outline: none; }
+        .cli-input::placeholder { color: #555; }
+
         /* Timeline (Experience) */
         .timeline { border-left: 2px solid var(--net-purple); padding-left: 30px; margin-top: 50px; }
         .timeline-item { margin-bottom: 50px; position: relative; background: var(--card-bg); padding: 30px; border-radius: 8px; border: 1px solid rgba(181, 55, 242, 0.3); }
@@ -105,19 +113,37 @@
             <h1 class="glow-blue">YESHWANTH RAO YARASI</h1>
             <div class="typewriter mono">> Senior Unified Communications & Network Architect_</div>
             <p class="hero-desc">
-                Dynamic Unified Communications Specialist and Network Engineer with a strong foundation in Information Technology and Cybersecurity[cite: 2, 3]. Expertise in maintaining legacy PBX systems, leading large-scale migrations to modern UCaaS platforms, and supporting enterprise voice networks for global operations[cite: 1, 3]. Dedicated to engineering robust, scalable, and secure communication architectures that drive enterprise efficiency.
+                Dynamic Unified Communications Specialist and Network Engineer with a strong foundation in Information Technology and Cybersecurity. Expertise in maintaining legacy PBX systems, leading large-scale migrations to modern UCaaS platforms, and supporting enterprise voice networks for global operations. Dedicated to engineering robust, scalable, and secure communication architectures that drive enterprise efficiency.
             </p>
             
             <div class="stats-grid">
-                <div class="stat-box"><div class="stat-number">95%</div><div class="stat-text">First-Contact Resolution[cite: 1]</div></div>
-                <div class="stat-box"><div class="stat-number">200+</div><div class="stat-text">Endpoints Configured[cite: 1]</div></div>
-                <div class="stat-box"><div class="stat-number">98%</div><div class="stat-text">SLA Compliance Maintained[cite: 1]</div></div>
-                <div class="stat-box"><div class="stat-number">2,000+</div><div class="stat-text">Global Users Supported[cite: 1]</div></div>
-                <div class="stat-box"><div class="stat-number">Tier III</div><div class="stat-text">Telecom Support Expert[cite: 3]</div></div>
-                <div class="stat-box"><div class="stat-number">24/7</div><div class="stat-text">Healthcare Ops Monitored[cite: 1]</div></div>
-                <div class="stat-box"><div class="stat-number">30%</div><div class="stat-text">Reduction in ATTS[cite: 1]</div></div>
-                <div class="stat-box"><div class="stat-number">35%</div><div class="stat-text">Ticket Drop via Knowledge Base[cite: 1]</div></div>
-                <div class="stat-box"><div class="stat-number">500+</div><div class="stat-text">Concurrent Users Managed[cite: 1]</div></div>
+                <div class="stat-box"><div class="stat-number">95%</div><div class="stat-text">First-Contact Resolution</div></div>
+                <div class="stat-box"><div class="stat-number">200+</div><div class="stat-text">Endpoints Configured</div></div>
+                <div class="stat-box"><div class="stat-number">98%</div><div class="stat-text">SLA Compliance Maintained</div></div>
+                <div class="stat-box"><div class="stat-number">2,000+</div><div class="stat-text">Global Users Supported</div></div>
+                <div class="stat-box"><div class="stat-number">Tier III</div><div class="stat-text">Telecom Support Expert</div></div>
+                <div class="stat-box"><div class="stat-number">24/7</div><div class="stat-text">Healthcare Ops Monitored</div></div>
+                <div class="stat-box"><div class="stat-number">30%</div><div class="stat-text">Reduction in ATTS</div></div>
+                <div class="stat-box"><div class="stat-number">35%</div><div class="stat-text">Ticket Drop via Knowledge Base</div></div>
+                <div class="stat-box"><div class="stat-number">500+</div><div class="stat-text">Concurrent Users Managed</div></div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE CLI TERMINAL (NEW AMAZING FEATURE) -->
+        <section class="scroll-anim">
+            <h2 class="glow-green" style="border-bottom: 1px solid var(--cyber-green); padding-bottom: 15px; font-size: 2.2rem;">> System Terminal [Interactive Protocol]</h2>
+            <p class="mono" style="color: #b0b0b0; font-size: 1.2rem;">Execute commands to interface with my technical database. Try typing <strong>'help'</strong>.</p>
+            
+            <div class="cli-terminal mono" id="terminal-box" onclick="document.getElementById('cmd-input').focus()">
+                <div class="cli-output" id="cli-output">
+Establishing secure connection to YASH_NETWORK...
+Authentication: SUCCESS
+Welcome to the Unified Communications Command Line. Type 'help' to see available commands.
+                </div>
+                <div class="cli-input-line">
+                    <span class="cli-prompt">visitor@yash-network:~$</span>
+                    <input type="text" id="cmd-input" class="cli-input" placeholder="Enter command here..." autocomplete="off">
+                </div>
             </div>
         </section>
 
@@ -129,8 +155,8 @@
                 <div class="timeline-item">
                     <h3>Network Engineer @ University of Iowa Health Care</h3>
                     <ul class="tech-list">
-                        <li><strong>Enterprise Architecture:</strong> Managing enterprise voice communication systems, infrastructure support, and developing large-scale migration strategies[cite: 2, 3].</li>
-                        <li><strong>Mission-Critical Ops:</strong> Providing exceptional tier-one voice support across hospital and clinic locations, ensuring absolute reliability for healthcare communications[cite: 1].</li>
+                        <li><strong>Enterprise Architecture:</strong> Managing enterprise voice communication systems, infrastructure support, and developing large-scale migration strategies.</li>
+                        <li><strong>Mission-Critical Ops:</strong> Providing exceptional tier-one voice support across hospital and clinic locations, ensuring absolute reliability for healthcare communications.</li>
                         <li><strong>Digital Transformation:</strong> Leading the eFax Migration project to transition physical fax machines to advanced digital solutions for the pharmacy department.</li>
                         <li><strong>Site Migrations & Procurement:</strong> Implementing the Tiffin Family Medicine relocation migration and managing hardware procurement and chargeback processes for bulk endpoint acquisitions.</li>
                     </ul>
@@ -139,20 +165,20 @@
                 <div class="timeline-item">
                     <h3>Senior System Engineer (UC SME) @ Cognizant</h3>
                     <ul class="tech-list">
-                        <li><strong>Global Tier Support:</strong> Delivered enterprise-level tier-one and tier-two technical support for voice communication systems supporting 2,000+ concurrent users across corporate operations[cite: 1].</li>
-                        <li><strong>Quality Diagnostics:</strong> Investigated call quality degradation including jitter, latency, packet loss, and echo using advanced CDR/CMR analysis and voice monitoring tools[cite: 1].</li>
+                        <li><strong>Global Tier Support:</strong> Delivered enterprise-level tier-one and tier-two technical support for voice communication systems supporting 2,000+ concurrent users across corporate operations.</li>
+                        <li><strong>Quality Diagnostics:</strong> Investigated call quality degradation including jitter, latency, packet loss, and echo using advanced CDR/CMR analysis and voice monitoring tools.</li>
                         <li><strong>Routing Optimization:</strong> Directed PBX-to-VoIP transitions and optimized complex call vectoring by shifting from inline VDN switches to an advanced coverage path method to align with strict organizational standards.</li>
-                        <li><strong>Infrastructure Collaboration:</strong> Provisioned and maintained user voice configurations, collaborating closely with infrastructure teams to resolve integrated voice and data challenges[cite: 1, 3].</li>
+                        <li><strong>Infrastructure Collaboration:</strong> Provisioned and maintained user voice configurations, collaborating closely with infrastructure teams to resolve integrated voice and data challenges.</li>
                     </ul>
                 </div>
 
                 <div class="timeline-item">
                     <h3>VoIP Network Engineer @ Mindtree</h3>
                     <ul class="tech-list">
-                        <li><strong>SIP & Protocol Debugging:</strong> Diagnosed and resolved intricate VoIP infrastructure issues including SIP registration failures and call routing problems, achieving a 95% first-contact resolution rate[cite: 1].</li>
+                        <li><strong>SIP & Protocol Debugging:</strong> Diagnosed and resolved intricate VoIP infrastructure issues including SIP registration failures and call routing problems, achieving a 95% first-contact resolution rate.</li>
                         <li><strong>Endpoint Mastery:</strong> Created internal runbooks detailing the behavioral variances of specific "star code" features on softphones compared to physical hardware handsets for faster team troubleshooting.</li>
-                        <li><strong>System Design:</strong> Designed Auto Attendants, configured Call Queues based on client specifications, and managed vital SIP trunk connectivity[cite: 1, 3].</li>
-                        <li><strong>Device & Patch Management:</strong> Orchestrated device driver updates, firmware upgrades, and managed MACD operations, adhering strictly to ITIL-aligned incident management procedures[cite: 1].</li>
+                        <li><strong>System Design:</strong> Designed Auto Attendants, configured Call Queues based on client specifications, and managed vital SIP trunk connectivity.</li>
+                        <li><strong>Device & Patch Management:</strong> Orchestrated device driver updates, firmware upgrades, and managed MACD operations, adhering strictly to ITIL-aligned incident management procedures.</li>
                     </ul>
                 </div>
 
@@ -164,7 +190,6 @@
             <h2 class="glow-green" style="border-bottom: 1px solid var(--cyber-green); padding-bottom: 15px; font-size: 2.2rem;">> Deployed Architectures [Projects & Execution]</h2>
             <div class="flashcard-grid">
                 
-                <!-- Card 1 -->
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -176,15 +201,14 @@
                             <h3 style="color: var(--cyber-green); border-bottom: 1px solid #333; padding-bottom: 10px;">Execution Data:</h3>
                             <ul>
                                 <li>Engineered an internal routing utility leveraging C#/.NET and FastAPI.</li>
-                                <li>Streamlined complex call flow management and accelerated enterprise network migration tasks[cite: 1].</li>
-                                <li>Replaced tedious manual legacy configurations with a unified operational UI[cite: 1].</li>
-                                <li>Integrated robust audit logging for maximum compliance and security[cite: 1].</li>
+                                <li>Streamlined complex call flow management and accelerated enterprise network migration tasks.</li>
+                                <li>Replaced tedious manual legacy configurations with a unified operational UI.</li>
+                                <li>Integrated robust audit logging for maximum compliance and security.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -195,15 +219,14 @@
                         <div class="flip-card-back mono">
                             <h3 style="color: var(--cyber-green); border-bottom: 1px solid #333; padding-bottom: 10px;">Execution Data:</h3>
                             <ul>
-                                <li>Designed a robust, multi-site network architecture within Cisco Packet Tracer[cite: 3].</li>
-                                <li>Implemented rigorous security protocols including VLANs, OSPF routing, and edge firewalls[cite: 3].</li>
-                                <li>Deployed and tested fault-tolerant DNS, DHCP, email, and web services for healthcare environments[cite: 3].</li>
+                                <li>Designed a robust, multi-site network architecture within Cisco Packet Tracer.</li>
+                                <li>Implemented rigorous security protocols including VLANs, OSPF routing, and edge firewalls.</li>
+                                <li>Deployed and tested fault-tolerant DNS, DHCP, email, and web services for healthcare environments.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -214,15 +237,14 @@
                         <div class="flip-card-back mono">
                             <h3 style="color: var(--cyber-green); border-bottom: 1px solid #333; padding-bottom: 10px;">Execution Data:</h3>
                             <ul>
-                                <li>Conducted advanced forensic triage utilizing Autopsy, Volatility, and Wireshark[cite: 3].</li>
-                                <li>Successfully identified and tracked SQL data exfiltration via deep PowerShell and CMS log analysis[cite: 3].</li>
-                                <li>Exploited and analyzed real-world CVEs (e.g., CVE-2020-25213) to master privilege escalation techniques[cite: 3].</li>
+                                <li>Conducted advanced forensic triage utilizing Autopsy, Volatility, and Wireshark.</li>
+                                <li>Successfully identified and tracked SQL data exfiltration via deep PowerShell and CMS log analysis.</li>
+                                <li>Exploited and analyzed real-world CVEs (e.g., CVE-2020-25213) to master privilege escalation techniques.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 4 -->
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -241,7 +263,6 @@
                     </div>
                 </div>
 
-                <!-- Card 5 -->
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -252,15 +273,14 @@
                         <div class="flip-card-back mono">
                             <h3 style="color: var(--cyber-green); border-bottom: 1px solid #333; padding-bottom: 10px;">Execution Data:</h3>
                             <ul>
-                                <li>Executed full-lifecycle deployments from legacy Avaya PBX systems to modern UCaaS environments like MS Teams and Five9[cite: 1, 3].</li>
-                                <li>Directed SIP protocol debugging, intricate IVR design, and end-user voice configuration mapping[cite: 3].</li>
-                                <li>Configured automated voice gateways and optimized network rules to support hybrid telephony models[cite: 3].</li>
+                                <li>Executed full-lifecycle deployments from legacy Avaya PBX systems to modern UCaaS environments like MS Teams and Five9.</li>
+                                <li>Directed SIP protocol debugging, intricate IVR design, and end-user voice configuration mapping.</li>
+                                <li>Configured automated voice gateways and optimized network rules to support hybrid telephony models.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 6 -->
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -271,9 +291,9 @@
                         <div class="flip-card-back mono">
                             <h3 style="color: var(--cyber-green); border-bottom: 1px solid #333; padding-bottom: 10px;">Execution Data:</h3>
                             <ul>
-                                <li>Resolved massive call quality degradation issues affecting 100+ users by identifying the root cause within 2 hours[cite: 1].</li>
-                                <li>Analyzed voice quality metrics, bandwidth utilization, and network traffic patterns to eliminate jitter and echo[cite: 1].</li>
-                                <li>Developed comprehensive Standard Operating Procedures (SOPs), reducing recurring infrastructure tickets by 35%[cite: 1].</li>
+                                <li>Resolved massive call quality degradation issues affecting 100+ users by identifying the root cause within 2 hours.</li>
+                                <li>Analyzed voice quality metrics, bandwidth utilization, and network traffic patterns to eliminate jitter and echo.</li>
+                                <li>Developed comprehensive Standard Operating Procedures (SOPs), reducing recurring infrastructure tickets by 35%.</li>
                             </ul>
                         </div>
                     </div>
@@ -290,26 +310,26 @@
                 <div class="skill-box">
                     <h3>Academic & Global Certifications</h3>
                     <ul class="tech-list mono">
-                        <li><strong>Master of Science:</strong> Cybersecurity & Networks - University of New Haven (GPA: 3.7)[cite: 1, 3]</li>
-                        <li><strong>Bachelor of Engineering:</strong> Computer Science - CMR Institute of Technology (GPA: 7.8/10)[cite: 1, 3]</li>
-                        <li><strong>Bootcamp:</strong> Complete Ethical Hacking - Zero To Mastery Academy[cite: 2]</li>
+                        <li><strong>Master of Science:</strong> Cybersecurity & Networks - University of New Haven (GPA: 3.7)</li>
+                        <li><strong>Bachelor of Engineering:</strong> Computer Science - CMR Institute of Technology (GPA: 7.8/10)</li>
+                        <li><strong>Bootcamp:</strong> Complete Ethical Hacking - Zero To Mastery Academy</li>
                         <hr style="border-color: rgba(0, 229, 255, 0.2); margin: 25px 0;">
-                        <li><span style="color: var(--cyber-green);">[✓]</span> Microsoft Teams Certified Administrator (MS-700)[cite: 1, 2, 3]</li>
-                        <li><span style="color: var(--cyber-green);">[✓]</span> Five9 Cloud Contact Center Certified Administrator[cite: 1, 2, 3]</li>
-                        <li><span style="color: var(--cyber-green);">[✓]</span> Microsoft Azure Fundamentals (AZ-900)[cite: 1, 3]</li>
-                        <li><span style="color: var(--cyber-green);">[✓]</span> ITIL Foundation (Incident, Service & Change Management)[cite: 1]</li>
-                        <li><span style="color: var(--cyber-green);">[✓]</span> Ribbon SBC Edge - Voice Infrastructure[cite: 1, 2]</li>
-                        <li><span style="color: var(--cyber-green);">[✓]</span> Claude 101 / AI Prompting[cite: 2]</li>
+                        <li><span style="color: var(--cyber-green);">[✓]</span> Microsoft Teams Certified Administrator (MS-700)</li>
+                        <li><span style="color: var(--cyber-green);">[✓]</span> Five9 Cloud Contact Center Certified Administrator</li>
+                        <li><span style="color: var(--cyber-green);">[✓]</span> Microsoft Azure Fundamentals (AZ-900)</li>
+                        <li><span style="color: var(--cyber-green);">[✓]</span> ITIL Foundation (Incident, Service & Change Management)</li>
+                        <li><span style="color: var(--cyber-green);">[✓]</span> Ribbon SBC Edge - Voice Infrastructure</li>
+                        <li><span style="color: var(--cyber-green);">[✓]</span> Claude 101 / AI Prompting</li>
                     </ul>
                 </div>
 
                 <div class="skill-box">
                     <h3>Technical & Operational Competencies</h3>
                     <ul class="tech-list mono">
-                        <li><strong>Voice & Telephony:</strong> Avaya PBX Systems, SIP Protocol Diagnosis, Device Registration, Headset Configuration, Call Flow & Routing Diagnosis, Voice Gateway Configuration[cite: 1, 3].</li>
-                        <li><strong>Call Quality Diagnostics:</strong> Jitter & Latency Troubleshooting, Packet Loss Diagnosis, CDR/CMR Record Analysis, Wireshark Packet Analysis, Bandwidth & QoS Implementation[cite: 1, 3].</li>
-                        <li><strong>System Automation:</strong> MACD Operations, Firmware Version Control, PowerShell Scripting, VMware Virtualization, Linux/Windows Server Management, Hardware Inventory Management[cite: 1, 3].</li>
-                        <li><strong>Healthcare Compliance:</strong> Strict HIPAA Compliance adherence, Clinical Environment Requirements, Infection Control Protocols, E911/Kari's Law Compliance, 24/7 Operations Support[cite: 1].</li>
+                        <li><strong>Voice & Telephony:</strong> Avaya PBX Systems, SIP Protocol Diagnosis, Device Registration, Headset Configuration, Call Flow & Routing Diagnosis, Voice Gateway Configuration.</li>
+                        <li><strong>Call Quality Diagnostics:</strong> Jitter & Latency Troubleshooting, Packet Loss Diagnosis, CDR/CMR Record Analysis, Wireshark Packet Analysis, Bandwidth & QoS Implementation.</li>
+                        <li><strong>System Automation:</strong> MACD Operations, Firmware Version Control, PowerShell Scripting, VMware Virtualization, Linux/Windows Server Management, Hardware Inventory Management.</li>
+                        <li><strong>Healthcare Compliance:</strong> Strict HIPAA Compliance adherence, Clinical Environment Requirements, Infection Control Protocols, E911/Kari's Law Compliance, 24/7 Operations Support.</li>
                     </ul>
                 </div>
 
@@ -327,7 +347,7 @@
                     <span style="margin-left: 15px; font-size: 1.1rem;">root@yash-network:~# ./initiate_contact.sh</span>
                 </div>
                 
-                <form action="https://formsubmit.co/02a4f0f6724c39d5a2f4471be24e9fe6" method="POST">
+                <form action="https://formsubmit.co/yyeshwanth004@gmail.com" method="POST">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_subject" value="New Comm_Link from Portfolio Website">
                     
@@ -356,6 +376,7 @@
 
     <!-- SCRIPTS -->
     <script>
+        // 1. Particle Network Animation
         const canvas = document.getElementById('networkCanvas');
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
@@ -412,6 +433,7 @@
         }
         animate();
 
+        // 2. Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -421,6 +443,44 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.scroll-anim').forEach((el) => observer.observe(el));
+
+        // 3. Interactive CLI Terminal Logic
+        const cmdInput = document.getElementById('cmd-input');
+        const cliOutput = document.getElementById('cli-output');
+        const terminalBox = document.getElementById('terminal-box');
+
+        const commands = {
+            'help': 'Available commands: \n - whoami   (Shows identity details)\n - skills   (Lists core technical skills)\n - ping     (Checks network status)\n - clear    (Clears the terminal screen)',
+            'whoami': 'Name: Yeshwanth Rao Yarasi\nRole: Senior Unified Communications & Network Architect\nLocation: Iowa City, IA\nStatus: Ready for deployment.',
+            'skills': '[VOIP]: Avaya PBX, MS Teams, Five9, RingCentral, SIP\n[NETWORK]: Wireshark, QoS, VLAN, OSPF\n[TOOLS]: PowerShell, VMware, C#, .NET',
+            'ping': 'Pinging yash-network [192.168.1.1] with 32 bytes of data:\nReply from 192.168.1.1: bytes=32 time<1ms TTL=128\nReply from 192.168.1.1: bytes=32 time<1ms TTL=128\n\nPing statistics: Packets: Sent = 2, Received = 2, Lost = 0 (0% loss). Network is stable.',
+            'clear': ''
+        };
+
+        cmdInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const inputVal = cmdInput.value.trim().toLowerCase();
+                if (inputVal === '') return;
+
+                let response = `\nvisitor@yash-network:~$ ${inputVal}\n`;
+                
+                if (inputVal === 'clear') {
+                    cliOutput.innerHTML = '';
+                    cmdInput.value = '';
+                    return;
+                }
+
+                if (commands[inputVal]) {
+                    response += commands[inputVal];
+                } else {
+                    response += `Command not found: ${inputVal}. Type 'help' for a list of commands.`;
+                }
+
+                cliOutput.innerHTML += response + '\n';
+                cmdInput.value = '';
+                terminalBox.scrollTop = terminalBox.scrollHeight;
+            }
+        });
     </script>
 </body>
 </html>
