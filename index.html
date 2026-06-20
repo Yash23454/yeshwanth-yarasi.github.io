@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yeshwanth Rao Yarasi | Unified Communications & Cyber Engineer</title>
+    <title>Yeshwanth Rao Yarasi | Unified Communications & Network Engineer</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap');
         
@@ -65,17 +65,22 @@
         /* CRAZY TERMINAL SECTION */
         .terminal-container { display: flex; gap: 25px; margin-top: 30px; height: 500px; }
         .cli-terminal { flex: 2; background: #050505; border: 1px solid var(--cyber-green); border-radius: 8px; padding: 25px; display: flex; flex-direction: column; box-shadow: inset 0 0 30px rgba(0, 255, 65, 0.05); transition: 0.3s; }
-        .cli-output { flex-grow: 1; overflow-y: auto; color: var(--cyber-green); margin-bottom: 15px; line-height: 1.6; font-size: 1.1rem; white-space: pre-wrap; transition: 0.3s; }
+        .cli-output { flex-grow: 1; overflow-y: auto; color: var(--cyber-green); margin-bottom: 15px; line-height: 1.6; font-size: 1.1rem; white-space: pre-wrap; transition: 0.3s; padding-right: 10px; }
+        /* Custom Scrollbar for Terminal */
+        .cli-output::-webkit-scrollbar { width: 8px; }
+        .cli-output::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 4px; }
+        .cli-output::-webkit-scrollbar-thumb { background: var(--cyber-green); border-radius: 4px; }
+        
         .cli-output pre { color: var(--voip-blue); font-size: 0.75rem; text-shadow: 0 0 5px var(--voip-blue); margin-top: 0; font-family: 'Share Tech Mono', monospace; line-height: 1.2; transition: 0.3s; }
         .cli-input-line { display: flex; align-items: center; border-top: 1px dashed #333; padding-top: 15px; }
-        .cli-prompt { color: var(--voip-blue); margin-right: 10px; font-weight: bold; }
+        .cli-prompt { color: var(--voip-blue); margin-right: 10px; font-weight: bold; transition: 0.3s; }
         .cli-input { background: transparent; border: none; color: #fff; font-family: 'Share Tech Mono', monospace; font-size: 1.1rem; width: 100%; outline: none; }
         
         .diagnostics-panel { flex: 1; background: #050505; border: 1px solid var(--voip-blue); border-radius: 8px; padding: 30px; display: flex; flex-direction: column; box-shadow: inset 0 0 30px rgba(0, 229, 255, 0.05); transition: 0.3s; }
         .diag-title { color: var(--voip-blue); font-size: 1.5rem; margin: 0 0 25px 0; border-bottom: 1px dashed var(--voip-blue); padding-bottom: 10px; transition: 0.3s; }
         .diag-list { list-style: none; padding: 0; margin: 0; font-size: 1.15rem; color: #ccc; flex-grow: 1; }
         .diag-list li { margin-bottom: 20px; display: flex; justify-content: space-between; border-bottom: 1px solid #1a1a1a; padding-bottom: 5px; }
-        .diag-list span { color: var(--cyber-green); font-weight: bold; }
+        .diag-list span { color: var(--cyber-green); font-weight: bold; transition: 0.3s; }
         .blink { animation: blinker 1s linear infinite; }
         @keyframes blinker { 50% { opacity: 0.3; } }
 
@@ -91,6 +96,36 @@
         .timeline-item h3 { color: var(--net-purple); margin: 0 0 15px 0; font-size: 1.8rem; transition: 0.3s; }
         ul.tech-list { padding-left: 20px; }
         ul.tech-list li { margin-bottom: 12px; list-style-type: square; color: #d0d0d0; font-size: 1.15rem; line-height: 1.5; }
+
+        /* FLASH CARDS GRID */
+        .flashcard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+        .flip-card { background-color: transparent; height: 400px; perspective: 1000px; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: left; transition: transform 0.8s; transform-style: preserve-3d; }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 12px; padding: 30px; box-sizing: border-box; }
+        .flip-card-front { background: var(--card-bg); border: 1px solid rgba(0, 255, 65, 0.4); box-shadow: 0 0 20px rgba(0, 255, 65, 0.1); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .flip-card-back { background: rgba(0, 30, 0, 0.95); border: 1px solid var(--cyber-green); transform: rotateY(180deg); overflow-y: auto; box-shadow: 0 0 30px rgba(0, 255, 65, 0.2); }
+        .flip-card-back ul { padding-left: 15px; }
+        .flip-card-back li { margin-bottom: 10px; font-size: 1.05rem; line-height: 1.4; color: #e0e0e0; }
+
+        /* SKILLS MATRIX */
+        .skills-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+        .skill-box { background: var(--card-bg); padding: 35px; border-radius: 8px; border: 1px solid rgba(0, 229, 255, 0.3); }
+        .skill-box h3 { color: var(--voip-blue); font-size: 1.6rem; margin-top: 0; border-bottom: 1px dashed var(--voip-blue); padding-bottom: 15px; transition: 0.3s; }
+
+        /* CONTACT TERMINAL */
+        .terminal-form { background: #000; border: 1px solid var(--voip-blue); border-radius: 8px; padding: 40px; position: relative; box-shadow: 0 0 30px rgba(0, 229, 255, 0.15); margin-top: 40px; transition: 0.3s; }
+        .terminal-header { background: #111; padding: 15px; margin: -40px -40px 40px -40px; border-bottom: 1px solid var(--voip-blue); border-radius: 8px 8px 0 0; color: var(--voip-blue); font-family: monospace; display: flex; gap: 10px; align-items: center; transition: 0.3s; }
+        .dot { width: 14px; height: 14px; border-radius: 50%; background: #ff5f56; }
+        .dot:nth-child(2) { background: #ffbd2e; }
+        .dot:nth-child(3) { background: #27c93f; }
+        
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 10px; color: var(--voip-blue); font-family: monospace; font-size: 1.1rem; transition: 0.3s; }
+        .form-group input, .form-group textarea { width: 100%; padding: 15px; background: rgba(0,0,0,0.5); border: 1px solid #444; color: #00ff41; font-family: monospace; font-size: 1.1rem; border-radius: 4px; transition: 0.3s; box-sizing: border-box; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--cyber-green); box-shadow: 0 0 15px rgba(0, 255, 65, 0.3); }
+        .submit-btn { background: transparent; color: var(--voip-blue); border: 1px solid var(--voip-blue); padding: 15px 40px; font-size: 1.3rem; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; font-family: 'Share Tech Mono'; width: 100%; margin-top: 10px; }
+        .submit-btn:hover { background: var(--voip-blue); color: #000; box-shadow: 0 0 30px var(--voip-blue); font-weight: bold; }
 
         /* VOIP SOFTPHONE EASTER EGG */
         .phone-toggle { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: var(--voip-blue); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 0 20px var(--voip-blue); z-index: 1000; font-size: 24px; transition: 0.3s; }
@@ -110,6 +145,12 @@
         #easter-egg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; display: none; justify-content: center; align-items: center; flex-direction: column; }
         .overlay-text { font-family: 'Share Tech Mono'; font-size: 3rem; color: var(--cyber-green); text-shadow: 0 0 20px var(--cyber-green); text-align: center; }
 
+        @media (max-width: 992px) {
+            .stats-grid, .flashcard-grid, .terminal-container { grid-template-columns: 1fr; flex-direction: column; height: auto; }
+            .skills-container { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3.5rem; }
+            .cli-terminal { height: 400px; }
+        }
     </style>
 </head>
 <body>
@@ -154,10 +195,11 @@
 
     <!-- MAIN CONTAINER -->
     <div class="container">
+        
         <!-- HERO SECTION -->
         <section class="hero visible">
             <h1 class="glow-blue">YESHWANTH RAO YARASI</h1>
-            <div class="typewriter mono">> Senior Unified Communications & Network Engineer</div>
+            <div class="typewriter mono">> Senior Unified Communications & Network Engineer_</div>
             <p class="hero-desc">
                 Dynamic Unified Communications Specialist and Network Engineer with a strong foundation in Information Technology and Cybersecurity[cite: 2, 3]. Expertise in maintaining legacy PBX systems, leading large-scale migrations to modern UCaaS platforms, and supporting enterprise voice networks for global operations[cite: 1, 3]. Dedicated to engineering robust, scalable, and secure communication architectures that drive enterprise efficiency.
             </p>
@@ -166,6 +208,12 @@
                 <div class="stat-box"><div class="stat-number">95%</div><div class="stat-text">First-Contact Resolution[cite: 1]</div></div>
                 <div class="stat-box"><div class="stat-number">200+</div><div class="stat-text">Endpoints Configured[cite: 1]</div></div>
                 <div class="stat-box"><div class="stat-number">98%</div><div class="stat-text">SLA Compliance Maintained[cite: 1]</div></div>
+                <div class="stat-box"><div class="stat-number">2,000+</div><div class="stat-text">Global Users Supported[cite: 1]</div></div>
+                <div class="stat-box"><div class="stat-number">Tier III</div><div class="stat-text">Telecom Support Expert[cite: 3]</div></div>
+                <div class="stat-box"><div class="stat-number">24/7</div><div class="stat-text">Healthcare Ops Monitored[cite: 1]</div></div>
+                <div class="stat-box"><div class="stat-number">30%</div><div class="stat-text">Reduction in ATTS[cite: 1]</div></div>
+                <div class="stat-box"><div class="stat-number">35%</div><div class="stat-text">Ticket Drop via Knowledge Base[cite: 1]</div></div>
+                <div class="stat-box"><div class="stat-number">500+</div><div class="stat-text">Concurrent Users Managed[cite: 1]</div></div>
             </div>
         </section>
 
@@ -175,7 +223,7 @@
             <p class="mono" style="color: #b0b0b0; font-size: 1.2rem;">Try typing <strong>'help'</strong> or <strong>'sudo su'</strong> for root access.</p>
             
             <div class="terminal-container mono">
-                <div class="cli-terminal" id="terminal-box" onclick="document.getElementById('cmd-input').focus()">
+                <div class="cli-terminal" onclick="document.getElementById('cmd-input').focus()">
                     <div class="cli-output" id="cli-output">
 <pre>
  __  __           _      __        __    _                      __  __ 
@@ -186,9 +234,10 @@
 </pre>
 > Establishing secure connection to YASH_NETWORK_NODE_01...
 > Authentication: SUCCESS [Key: 2048-RSA]
+> Welcome to the Unified Communications Command Center.
                     </div>
                     <div class="cli-input-line">
-                        <span class="cli-prompt">visitor@yash-network:~$</span>
+                        <span class="cli-prompt" id="cli-prompt">visitor@yash-network:~$</span>
                         <input type="text" id="cmd-input" class="cli-input" placeholder="Enter command here..." autocomplete="off">
                     </div>
                 </div>
@@ -200,6 +249,8 @@
                         <li>SIP Trunk Status: <span>REGISTERED</span></li>
                         <li>Live Latency: <span id="live-latency">14ms</span></li>
                         <li>Current Jitter: <span id="live-jitter">1.2ms</span></li>
+                        <li>Packet Loss: <span>0.00%</span></li>
+                        <li>Firewall Rules: <span>ACTIVE</span></li>
                     </ul>
                     <div class="equalizer">
                         <div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -213,24 +264,230 @@
         <section class="scroll-anim">
             <h2 class="glow-purple">> Command History [Experience Matrix]</h2>
             <div class="timeline">
+                
                 <div class="timeline-item">
                     <h3>Network Engineer @ University of Iowa Health Care</h3>
                     <ul class="tech-list">
                         <li><strong>Enterprise Architecture:</strong> Managing enterprise voice communication systems, infrastructure support, and developing large-scale migration strategies[cite: 2, 3].</li>
-                        <li><strong>Digital Transformation:</strong> Leading the eFax Migration project to transition physical fax machines to advanced digital solutions.</li>
+                        <li><strong>Mission-Critical Ops:</strong> Providing exceptional tier-one voice support across hospital and clinic locations, ensuring absolute reliability for healthcare communications[cite: 1].</li>
+                        <li><strong>Digital Transformation:</strong> Leading the eFax Migration project to transition physical fax machines to advanced digital solutions for the pharmacy department.</li>
+                        <li><strong>Site Migrations & Procurement:</strong> Implementing the Tiffin Family Medicine relocation migration and managing hardware procurement and chargeback processes.</li>
                     </ul>
                 </div>
+
                 <div class="timeline-item">
                     <h3>Senior System Engineer (UC SME) @ Cognizant</h3>
                     <ul class="tech-list">
                         <li><strong>Global Tier Support:</strong> Delivered enterprise-level tier-one and tier-two technical support for voice communication systems supporting 2,000+ concurrent users across corporate operations[cite: 1].</li>
-                        <li><strong>Quality Diagnostics:</strong> Investigated call quality degradation including jitter, latency, packet loss, and echo using advanced CDR/CMR analysis[cite: 1].</li>
+                        <li><strong>Quality Diagnostics:</strong> Investigated call quality degradation including jitter, latency, packet loss, and echo using advanced CDR/CMR analysis and voice monitoring tools[cite: 1].</li>
+                        <li><strong>Routing Optimization:</strong> Directed PBX-to-VoIP transitions and optimized complex call vectoring by shifting from inline VDN switches to an advanced coverage path method.</li>
+                        <li><strong>Infrastructure Collaboration:</strong> Provisioned and maintained user voice configurations, collaborating closely with infrastructure teams to resolve integrated voice and data challenges[cite: 1, 3].</li>
                     </ul>
                 </div>
+
+                <div class="timeline-item">
+                    <h3>VoIP Network Engineer @ Mindtree</h3>
+                    <ul class="tech-list">
+                        <li><strong>SIP & Protocol Debugging:</strong> Diagnosed and resolved intricate VoIP infrastructure issues including SIP registration failures and call routing problems, achieving a 95% first-contact resolution rate[cite: 1].</li>
+                        <li><strong>Endpoint Mastery:</strong> Created internal runbooks detailing the behavioral variances of specific "star code" features on softphones compared to physical hardware handsets.</li>
+                        <li><strong>System Design:</strong> Designed Auto Attendants, configured Call Queues based on client specifications, and managed vital SIP trunk connectivity[cite: 1, 3].</li>
+                        <li><strong>Device Management:</strong> Orchestrated device driver updates, firmware upgrades, and managed MACD operations, adhering strictly to ITIL-aligned incident management procedures[cite: 1].</li>
+                    </ul>
+                </div>
+
             </div>
         </section>
+
+        <!-- 6 FLASH CARDS (PROJECTS) -->
+        <section class="scroll-anim">
+            <h2 class="glow-green">> Deployed Architectures [Projects & Execution]</h2>
+            <div class="flashcard-grid">
+                
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="glow-green">PSX Route Manager</h3>
+                            <p class="mono" style="font-size: 1.1rem; color: #00ff41;">> Internal Utility Development</p>
+                            <p style="color: #888; margin-top: 20px;">[ Hover to Decrypt Specifications ]</p>
+                        </div>
+                        <div class="flip-card-back mono">
+                            <h3 style="color: var(--cyber-green); border-bottom: 1px solid #333; padding-bottom: 10px;">Execution Data:</h3>
+                            <ul>
+                                <li>Engineered an internal routing utility leveraging C#/.NET and FastAPI.</li>
+                                <li>Streamlined complex call flow management and accelerated enterprise network migration tasks[cite: 1].</li>
+                                <li>Replaced tedious manual legacy configurations with a unified operational UI[cite: 1].</li>
+                                <li>Integrated robust audit logging for maximum compliance and security[cite: 1].</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="glow-green">MetroHealth Secure Network</h3>
+                            <p class="mono" style="font-size: 1.1rem; color: #00ff41;">> HIPAA-Compliant Architecture</p>
+                            <p style="color: #888; margin-top: 20px;">[ Hover to Decrypt Specifications ]</p>
+                        </div>
+                        <div class="flip-card-back mono">
+                            <h3 style="color: var(--cyber-green); border-bottom: 1px solid #333; padding-bottom: 10px;">Execution Data:</h3>
+                            <ul>
+                                <li>Designed a robust, multi-site network architecture within Cisco Packet Tracer[cite: 3].</li>
+                                <li>Implemented rigorous security protocols including VLANs, OSPF routing, and edge firewalls[cite: 3].</li>
+                                <li>Deployed and tested fault-tolerant DNS, DHCP, email, and web services for healthcare environments[cite: 3].</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="glow-green">Cyber Forensics & Exploit Lab</h3>
+                            <p class="mono" style="font-size: 1.1rem; color: #00ff41;">> Threat Investigation</p>
+                            <p style="color: #888; margin-top: 20px;">[ Hover to Decrypt Specifications ]</p>
+                        </div>
+                        <div class="flip-card-back mono">
+                            <h3 style="color: var(--cyber-green); border-bottom: 1px solid #333; padding-bottom: 10px;">Execution Data:</h3>
+                            <ul>
+                                <li>Conducted advanced forensic triage utilizing Autopsy, Volatility, and Wireshark[cite: 3].</li>
+                                <li>Successfully identified and tracked SQL data exfiltration via deep PowerShell and CMS log analysis[cite: 3].</li>
+                                <li>Exploited and analyzed real-world CVEs to master privilege escalation techniques[cite: 3].</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="glow-green">Enterprise eFax Migration</h3>
+                            <p class="mono" style="font-size: 1.1rem; color: #00ff41;">> Digital Transformation</p>
+                            <p style="color: #888; margin-top: 20px;">[ Hover to Decrypt Specifications ]</p>
+                        </div>
+                        <div class="flip-card-back mono">
+                            <h3 style="color: var(--cyber-green); border-bottom: 1px solid #333; padding-bottom: 10px;">Execution Data:</h3>
+                            <ul>
+                                <li>Spearheading the transition of legacy physical fax machines to advanced digital fax solutions for critical pharmacy departments.</li>
+                                <li>Managing comprehensive project timelines, stakeholder outreach, and workflow adaptations.</li>
+                                <li>Ensuring zero data loss and strict adherence to healthcare privacy standards during the digital transition.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="glow-green">Avaya to UCaaS Migration</h3>
+                            <p class="mono" style="font-size: 1.1rem; color: #00ff41;">> Cloud Telephony Integration</p>
+                            <p style="color: #888; margin-top: 20px;">[ Hover to Decrypt Specifications ]</p>
+                        </div>
+                        <div class="flip-card-back mono">
+                            <h3 style="color: var(--cyber-green); border-bottom: 1px solid #333; padding-bottom: 10px;">Execution Data:</h3>
+                            <ul>
+                                <li>Executed full-lifecycle deployments from legacy Avaya PBX systems to modern UCaaS environments like MS Teams and Five9[cite: 1, 3].</li>
+                                <li>Directed SIP protocol debugging, intricate IVR design, and end-user voice configuration mapping[cite: 3].</li>
+                                <li>Configured automated voice gateways and optimized network rules to support hybrid telephony models[cite: 3].</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="glow-green">VoIP Network Optimization</h3>
+                            <p class="mono" style="font-size: 1.1rem; color: #00ff41;">> SLA & Performance Scaling</p>
+                            <p style="color: #888; margin-top: 20px;">[ Hover to Decrypt Specifications ]</p>
+                        </div>
+                        <div class="flip-card-back mono">
+                            <h3 style="color: var(--cyber-green); border-bottom: 1px solid #333; padding-bottom: 10px;">Execution Data:</h3>
+                            <ul>
+                                <li>Resolved massive call quality degradation issues affecting 100+ users by identifying the root cause within 2 hours[cite: 1].</li>
+                                <li>Analyzed voice quality metrics, bandwidth utilization, and network traffic patterns to eliminate jitter and echo[cite: 1].</li>
+                                <li>Developed comprehensive Standard Operating Procedures (SOPs), reducing recurring infrastructure tickets by 35%[cite: 1].</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SKILLS & CERTS -->
+        <section class="scroll-anim">
+            <h2 class="glow-blue">> Certified Protocols [Skill Matrix]</h2>
+            <div class="skills-container">
+                
+                <div class="skill-box">
+                    <h3>Academic & Global Certifications</h3>
+                    <ul class="tech-list mono">
+                        <li><strong>Master of Science:</strong> Cybersecurity & Networks - University of New Haven (GPA: 3.7)[cite: 1, 3]</li>
+                        <li><strong>Bachelor of Engineering:</strong> Computer Science - CMR Institute of Technology (GPA: 7.8/10)[cite: 1, 3]</li>
+                        <li><strong>Bootcamp:</strong> Complete Ethical Hacking - Zero To Mastery Academy[cite: 2]</li>
+                        <hr style="border-color: rgba(0, 229, 255, 0.2); margin: 25px 0;">
+                        <li><span style="color: var(--cyber-green);">[✓]</span> Microsoft Teams Certified Administrator (MS-700)[cite: 1, 2, 3]</li>
+                        <li><span style="color: var(--cyber-green);">[✓]</span> Five9 Cloud Contact Center Certified Administrator[cite: 1, 2, 3]</li>
+                        <li><span style="color: var(--cyber-green);">[✓]</span> Microsoft Azure Fundamentals (AZ-900)[cite: 1, 3]</li>
+                        <li><span style="color: var(--cyber-green);">[✓]</span> ITIL Foundation (Incident, Service & Change Management)[cite: 1]</li>
+                        <li><span style="color: var(--cyber-green);">[✓]</span> Ribbon SBC Edge - Voice Infrastructure[cite: 1, 2]</li>
+                        <li><span style="color: var(--cyber-green);">[✓]</span> Claude 101 / AI Prompting[cite: 2]</li>
+                    </ul>
+                </div>
+
+                <div class="skill-box">
+                    <h3>Technical & Operational Competencies</h3>
+                    <ul class="tech-list mono">
+                        <li><strong>Voice & Telephony:</strong> Avaya PBX Systems, SIP Protocol Diagnosis, Device Registration, Headset Configuration, Call Flow & Routing Diagnosis, Voice Gateway Configuration[cite: 1, 3].</li>
+                        <li><strong>Call Quality Diagnostics:</strong> Jitter & Latency Troubleshooting, Packet Loss Diagnosis, CDR/CMR Record Analysis, Wireshark Packet Analysis, Bandwidth & QoS Implementation[cite: 1, 3].</li>
+                        <li><strong>System Automation:</strong> MACD Operations, Firmware Version Control, PowerShell Scripting, VMware Virtualization, Linux/Windows Server Management, Hardware Inventory Management[cite: 1, 3].</li>
+                        <li><strong>Healthcare Compliance:</strong> Strict HIPAA Compliance adherence, Clinical Environment Requirements, Infection Control Protocols, E911/Kari's Law Compliance, 24/7 Operations Support[cite: 1].</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT TERMINAL -->
+        <section class="scroll-anim">
+            <h2 class="glow-green">> Secure Communication Channel</h2>
+            <p class="mono" style="margin-bottom: 30px; color: #888; font-size: 1.2rem;">// Establish a direct encrypted connection to my primary inbox.</p>
+            
+            <div class="terminal-form">
+                <div class="terminal-header">
+                    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    <span style="margin-left: 15px; font-size: 1.1rem;">root@yash-network:~# ./initiate_contact.sh</span>
+                </div>
+                
+                <form action="https://formsubmit.co/yyeshwanth004@gmail.com" method="POST">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="New Comm_Link from Portfolio Website">
+                    
+                    <div class="form-group">
+                        <label>> Enter Identification [Name]:</label>
+                        <input type="text" name="name" required placeholder="John_Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>> Reply Protocol [Email]:</label>
+                        <input type="email" name="email" required placeholder="john@enterprise.com">
+                    </div>
+                    <div class="form-group">
+                        <label>> Purpose of Transmission [Subject]:</label>
+                        <input type="text" name="purpose" required placeholder="Job Opportunity / Network Consultation">
+                    </div>
+                    <div class="form-group">
+                        <label>> Packet Payload [Message]:</label>
+                        <textarea name="message" rows="6" required placeholder="Execute data transmission here..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">> TRANSMIT_DATA</button>
+                </form>
+            </div>
+        </section>
+
     </div>
 
+    <!-- SCRIPTS -->
     <script>
         // --- 1. INTRUSION DETECTION ALERT SCRIPT ---
         const alertMsg = "[!] WARNING: Unidentified connection detected.\n> Tracing IP Route...\n> Analyzing Packets...\n> Bypassing Firewall...\n> Security clearance verified.\n> Welcome, Guest User.";
@@ -293,15 +550,14 @@
         }
         animate();
 
-        // --- 4. TERMINAL LOGIC & OVERRIDE HACK ---
+        // --- 4. TERMINAL LOGIC & OVERRIDE HACK WITH AUTO-SCROLL ---
         const cmdInput = document.getElementById('cmd-input');
         const cliOutput = document.getElementById('cli-output');
-        const terminalBox = document.getElementById('terminal-box');
 
         const commands = {
-            'help': 'Commands: \n - whoami \n - skills \n - sudo su (Admin override)',
-            'whoami': 'Name: Yeshwanth Rao Yarasi\nRole: Network Engineer',
-            'skills': '[VOIP]: Avaya, Teams\n[NET]: QoS, VLAN\n[SYS]: PowerShell, VMware,Wireshark,CDRs'
+            'help': 'Commands: \n - whoami \n - skills \n - sudo su (Admin override)\n - exit (Logout of root)',
+            'whoami': 'Name: Yeshwanth Rao Yarasi\nRole: Senior Network Engineer',
+            'skills': '[VOIP]: Avaya, Teams, Five9, SBC Edge\n[NET]: QoS, VLAN, OSPF, Wireshark\n[SYS]: PowerShell, VMware, FastAPI'
         };
 
         cmdInput.addEventListener('keypress', function (e) {
@@ -309,13 +565,33 @@
                 const inputVal = cmdInput.value.trim().toLowerCase();
                 if (inputVal === '') return;
 
-                let response = `\nvisitor@yash-network:~$ ${inputVal}\n`;
+                let response = `\n${document.getElementById('cli-prompt').innerText} ${inputVal}\n`;
                 
-                if (inputVal === 'sudo su' || inputVal === 'override') {
-                    response += "WARNING: INITIATING ROOT OVERRIDE PROTOCOL...\n";
-                    cliOutput.innerHTML += response;
+                if (inputVal === 'exit') {
+                    if (isOverrideMode) {
+                        isOverrideMode = false;
+                        document.body.classList.remove('override-mode');
+                        document.getElementById('cli-prompt').innerText = 'visitor@yash-network:~$';
+                        document.getElementById('cli-prompt').style.color = 'var(--voip-blue)';
+                        cliOutput.innerHTML += response + "> Terminating root session...\n> Connection closed.\n";
+                    } else {
+                        cliOutput.innerHTML += response + "> You are not in a root session.\n";
+                    }
                     cmdInput.value = '';
-                    triggerHackMode();
+                    cliOutput.scrollTop = cliOutput.scrollHeight;
+                    return;
+                }
+
+                if (inputVal === 'sudo su' || inputVal === 'override') {
+                    if (isOverrideMode) {
+                        cliOutput.innerHTML += response + "> You already have root access.\n";
+                    } else {
+                        response += "WARNING: INITIATING ROOT OVERRIDE PROTOCOL...\n";
+                        cliOutput.innerHTML += response;
+                        triggerHackMode();
+                    }
+                    cmdInput.value = '';
+                    cliOutput.scrollTop = cliOutput.scrollHeight;
                     return;
                 }
 
@@ -324,27 +600,30 @@
 
                 cliOutput.innerHTML += response + '\n';
                 cmdInput.value = '';
-                terminalBox.scrollTop = terminalBox.scrollHeight;
+                // AUTO-SCROLL FIX: Scroling the inner cli-output container
+                cliOutput.scrollTop = cliOutput.scrollHeight;
             }
         });
 
         function triggerHackMode() {
             isOverrideMode = true;
             document.body.classList.add('override-mode');
-            let hackLogs = ["Bypassing mainframe...", "Disabling Firewalls...", "Injecting payload...", "Decrypting admin hashes...", "Accessing Avaya node 0...", "Extracting VoIP records..."];
+            let hackLogs = ["Bypassing mainframe...", "Disabling Firewalls...", "Injecting payload...", "Decrypting admin hashes...", "Accessing Avaya node 0...", "Extracting VoIP records...", "Connecting to SIP Trunk...", "Overriding PBX protocols..."];
             let logIdx = 0;
             
             const hackInterval = setInterval(() => {
                 if (logIdx < 20) {
                     cliOutput.innerHTML += `[${Math.random().toString(36).substring(7)}] ${hackLogs[Math.floor(Math.random() * hackLogs.length)]}\n`;
-                    terminalBox.scrollTop = terminalBox.scrollHeight;
+                    // AUTO-SCROLL DURING HACK LOGS
+                    cliOutput.scrollTop = cliOutput.scrollHeight;
                     logIdx++;
                 } else {
                     clearInterval(hackInterval);
                     cliOutput.innerHTML += `\n<span style="color:#fff; font-size:1.5rem; background:#ff0000; padding:5px;">SYSTEM OVERRIDE SUCCESSFUL - ROOT ACCESS GRANTED</span>\n`;
-                    document.querySelector('.cli-prompt').innerText = 'root@yash-network:~#';
-                    document.querySelector('.cli-prompt').style.color = '#ff0000';
-                    terminalBox.scrollTop = terminalBox.scrollHeight;
+                    document.getElementById('cli-prompt').innerText = 'root@yash-network:~#';
+                    document.getElementById('cli-prompt').style.color = '#ff0000';
+                    // AUTO-SCROLL AFTER FINAL MESSAGE
+                    cliOutput.scrollTop = cliOutput.scrollHeight;
                 }
             }, 100);
         }
@@ -353,7 +632,6 @@
         let dialBuffer = "";
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         
-        // standard DTMF frequencies
         const dtmfMap = {
             '1': [697, 1209], '2': [697, 1336], '3': [697, 1477],
             '4': [770, 1209], '5': [770, 1336], '6': [770, 1477],
