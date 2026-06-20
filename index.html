@@ -62,10 +62,7 @@
             border-radius: 4px;
             max-width: 800px;
         }
-        #feature-welcome-msg.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        #feature-welcome-msg.show { opacity: 1; transform: translateY(0); }
         #feature-welcome-msg h3 { font-size: 1.2rem; color: var(--voip-blue); margin: 0 0 10px 0; border: none; letter-spacing: 1px;}
         #feature-welcome-msg p { color: #d3d3d3; margin: 0 0 10px 0; font-size: 1.1rem; }
         #feature-welcome-msg ul { list-style-type: none; padding-left: 0; margin: 0; }
@@ -89,7 +86,6 @@
         .terminal-container { display: flex; gap: 25px; margin-top: 30px; height: 500px; }
         .cli-terminal { flex: 2; background: #050505; border: 1px solid var(--cyber-green); border-radius: 8px; padding: 25px; display: flex; flex-direction: column; box-shadow: inset 0 0 30px rgba(0, 255, 65, 0.05); transition: 0.3s; }
         .cli-output { flex-grow: 1; overflow-y: auto; color: var(--cyber-green); margin-bottom: 15px; line-height: 1.6; font-size: 1.1rem; white-space: pre-wrap; transition: 0.3s; padding-right: 10px; }
-        /* Custom Scrollbar for Terminal */
         .cli-output::-webkit-scrollbar { width: 8px; }
         .cli-output::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 4px; }
         .cli-output::-webkit-scrollbar-thumb { background: var(--cyber-green); border-radius: 4px; }
@@ -196,12 +192,10 @@
     </style>
 </head>
 <body>
-    <!-- NETWORK CANVAS -->
     <canvas id="networkCanvas"></canvas>
-    <!-- LIVE PACKET SNIFFER -->
+    
     <div id="packet-stream"></div>
 
-    <!-- SECURITY ALERT BOX -->
     <div id="security-alert">
         <div class="alert-header">
             <div class="alert-blinker"></div>
@@ -210,7 +204,6 @@
         <div id="alert-text"></div>
     </div>
 
-    <!-- SOFTPHONE EASTER EGG -->
     <div class="phone-toggle" onclick="togglePhone()">📞</div>
     <div class="softphone-panel" id="softphone">
         <div style="color: #888; font-family: monospace; font-size: 0.8rem; margin-bottom: 5px; text-align: center;">SECURE DIALER [AVAYA_NODE] Try *#004# </div>
@@ -232,32 +225,30 @@
         </div>
     </div>
 
-    <!-- EASTER EGG OVERLAY -->
     <div id="easter-egg-overlay">
         <div class="overlay-text" id="overlay-msg">CLASSIFIED DATA UNLOCKED<br>> INITIALIZING RESUME PROTOCOL...</div>
     </div>
 
-    <!-- MAIN CONTAINER -->
     <div class="container">
         
-        <!-- HERO SECTION -->
         <section class="hero visible">
-            <!-- WELCOME FEATURE MESSAGE -->
             <div id="feature-welcome-msg" class="mono">
                 <h3>> CONNECTION ESTABLISHED</h3>
                 <p>Thank you for visiting! While you are here, please try some crazy features on this page:</p>
                 <ul>
                     <li>[1] Try typing <b>'sudo su'</b> in the System Terminal below.</li>
                     <li>[2] Dial the secret code on the Softphone dialer (bottom right icon).</li>
+                    <li>[3] Type <b>'reboot'</b> during system override to revert changes.</li>
                 </ul>
             </div>
-            <!-- DECRYPTED IMAGE FEATURE -->
+            
             <div class="profile-container">
-                <img src="profile.jpg" alt="Yeshwanth" class="profile-pic" onerror="this.src='https://via.placeholder.com/150/000000/00ff41?text=YASH'">
+                <img src="profile.png" alt="Yeshwanth" class="profile-pic" onerror="this.onerror=null; this.src='https://via.placeholder.com/150/000000/00ff41?text=YASH';">
                 <div class="glitch-overlay">
                     <span class="decrypt-text">[DECRYPTING...]</span>
                 </div>
             </div>
+            
             <h1 class="glow-blue">YESHWANTH RAO YARASI</h1>
             <div class="typewriter mono">> Senior Unified Communications & Network Engineer</div>
             <p class="hero-desc">
@@ -277,10 +268,9 @@
             </div>
         </section>
 
-        <!-- CRAZY INTERACTIVE CLI TERMINAL + DIAGNOSTICS -->
         <section class="scroll-anim">
             <h2 class="glow-green">> System Terminal & Live Diagnostics</h2>
-            <p class="mono" style="color: #b0b0b0; font-size: 1.2rem;">Try typing <strong>'help'</strong> or <strong>'sudo su'</strong> for root access and <strong>'Exit' to exit root access.</p>
+            <p class="mono" style="color: #b0b0b0; font-size: 1.2rem;">Try typing <strong>'help'</strong> or <strong>'sudo su'</strong> for root access and <strong>'exit'</strong> to exit root access.</p>
             
             <div class="terminal-container mono">
                 <div class="cli-terminal" onclick="document.getElementById('cmd-input').focus()">
@@ -320,7 +310,6 @@
             </div>
         </section>
 
-        <!-- EXPERIENCE TIMELINE -->
         <section class="scroll-anim">
             <h2 class="glow-purple">> Command History [Experience Matrix]</h2>
             <div class="timeline">
@@ -358,7 +347,6 @@
             </div>
         </section>
 
-        <!-- 6 FLASH CARDS (PROJECTS) -->
         <section class="scroll-anim">
             <h2 class="glow-green">> Deployed Architectures [Projects & Execution]</h2>
             <div class="flashcard-grid">
@@ -475,7 +463,6 @@
             </div>
         </section>
 
-        <!-- SKILLS & CERTS -->
         <section class="scroll-anim">
             <h2 class="glow-blue">> Certified Protocols [Skill Matrix]</h2>
             <div class="skills-container">
@@ -509,7 +496,6 @@
             </div>
         </section>
 
-        <!-- CONTACT TERMINAL -->
         <section class="scroll-anim">
             <h2 class="glow-green">> Secure Communication Channel</h2>
             <p class="mono" style="margin-bottom: 30px; color: #888; font-size: 1.2rem;">// Establish a direct encrypted connection to my primary inbox.</p>
@@ -547,7 +533,6 @@
 
     </div>
 
-    <!-- SCRIPTS -->
     <script>
         // --- 1. INTRUSION DETECTION ALERT SCRIPT ---
         const alertMsg = "[!] WARNING: Unidentified connection detected.\n> Tracing IP Route...\n> Analyzing Packets...\n> Bypassing Firewall...\n> Security clearance verified.\n> Welcome, Guest User.";
@@ -664,12 +649,30 @@
                     return;
                 }
 
+                if (inputVal === 'reboot') {
+                    if (document.body.classList.contains('crt-mode')) {
+                        response += "> Rebooting system...\n> Restoring modern UI protocols...\n";
+                        cliOutput.innerHTML += response;
+                        document.body.classList.add('crt-off-anim');
+                        setTimeout(() => {
+                            document.body.classList.remove('crt-mode');
+                            document.body.classList.remove('crt-off-anim');
+                        }, 600);
+                    } else {
+                        response += "> System is already running optimally. No reboot required.\n";
+                        cliOutput.innerHTML += response;
+                    }
+                    cmdInput.value = '';
+                    cliOutput.scrollTop = cliOutput.scrollHeight;
+                    return;
+                }
+
                 if (commands[inputVal]) { response += commands[inputVal]; } 
                 else { response += `Command not found: ${inputVal}.`; }
 
                 cliOutput.innerHTML += response + '\n';
                 cmdInput.value = '';
-                // AUTO-SCROLL FIX: Scroling the inner cli-output container
+                // AUTO-SCROLL FIX
                 cliOutput.scrollTop = cliOutput.scrollHeight;
             }
         });
@@ -683,7 +686,6 @@
             const hackInterval = setInterval(() => {
                 if (logIdx < 20) {
                     cliOutput.innerHTML += `[${Math.random().toString(36).substring(7)}] ${hackLogs[Math.floor(Math.random() * hackLogs.length)]}\n`;
-                    // AUTO-SCROLL DURING HACK LOGS
                     cliOutput.scrollTop = cliOutput.scrollHeight;
                     logIdx++;
                 } else {
@@ -691,7 +693,6 @@
                     cliOutput.innerHTML += `\n<span style="color:#fff; font-size:1.5rem; background:#ff0000; padding:5px;">SYSTEM OVERRIDE SUCCESSFUL - ROOT ACCESS GRANTED</span>\n`;
                     document.getElementById('cli-prompt').innerText = 'root@yash-network:~#';
                     document.getElementById('cli-prompt').style.color = '#ff0000';
-                    // AUTO-SCROLL AFTER FINAL MESSAGE
                     cliOutput.scrollTop = cliOutput.scrollHeight;
                 }
             }, 100);
@@ -737,7 +738,6 @@
 
         function processCall() {
             if (dialBuffer === '*#004#') {
-                // Phone UI close chesi overlay chupinchadam
                 document.getElementById('softphone').classList.remove('active');
                 const overlay = document.getElementById('easter-egg-overlay');
                 overlay.style.display = 'flex';
@@ -747,15 +747,14 @@
                     dialBuffer = '';
                     document.getElementById('sp-display').innerText = '';
                     
-                    // ACTUAL PDF DOWNLOAD LOGIC
                     const link = document.createElement('a');
-                    link.href = 'Yeshwanth_Rao_Yarasi_Resume.pdf'; // Idhi nee GitHub lo unna file name tho match avvali
-                    link.download = 'Yeshwanth_Rao_Yarasi_Resume.pdf'; // User download cheskunnaka ee peru tho save avthundi
+                    link.href = 'Yeshwanth_Rao_Yarasi_Resume.pdf'; 
+                    link.download = 'Yeshwanth_Rao_Yarasi_Resume.pdf'; 
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
                     
-                }, 3000); // 3 seconds overlay chupinchi download start avthundi
+                }, 3000); 
             } else {
                 document.getElementById('sp-display').innerText = "CONNECTION FAILED";
                 setTimeout(() => { dialBuffer = ""; document.getElementById('sp-display').innerText = ""; }, 1500);
@@ -794,7 +793,6 @@
         let konamiIndex = 0;
 
         document.addEventListener('keydown', (e) => {
-            // Check for Konami Code
             if (e.key === konamiCode[konamiIndex]) {
                 konamiIndex++;
                 if (konamiIndex === konamiCode.length) {
@@ -806,32 +804,14 @@
                 konamiIndex = 0;
             }
 
-            // Check for ESC key to revert
             if (e.key === 'Escape' && document.body.classList.contains('crt-mode')) {
                 document.body.classList.add('crt-off-anim');
                 setTimeout(() => {
                     document.body.classList.remove('crt-mode');
                     document.body.classList.remove('crt-off-anim');
-                }, 600); // Waits for the turn-off animation
+                }, 600); 
             }
         });
-        if (inputVal === 'reboot') {
-                    if (document.body.classList.contains('crt-mode')) {
-                        response += "> Rebooting system...\n> Restoring modern UI protocols...\n";
-                        cliOutput.innerHTML += response;
-                        document.body.classList.add('crt-off-anim');
-                        setTimeout(() => {
-                            document.body.classList.remove('crt-mode');
-                            document.body.classList.remove('crt-off-anim');
-                        }, 600);
-                    } else {
-                        response += "> System is already running optimally. No reboot required.\n";
-                        cliOutput.innerHTML += response;
-                    }
-                    cmdInput.value = '';
-                    cliOutput.scrollTop = cliOutput.scrollHeight;
-                    return;
-                }
     </script>
 </body>
 </html>
