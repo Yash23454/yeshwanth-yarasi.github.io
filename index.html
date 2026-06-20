@@ -3,141 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yeshwanth Rao | Network & UC Architect</title>
+    <title>Yeshwanth Rao Yarasi | Unified Communications & Cyber Architect</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap');
         
-        body, html { 
-            margin: 0; padding: 0; width: 100%; height: 100%; 
-            background-color: #050505; color: #00ff41; 
-            font-family: 'Share Tech Mono', monospace; overflow-x: hidden; 
+        :root {
+            --voip-blue: #00e5ff;
+            --cyber-green: #00ff41;
+            --net-purple: #b537f2;
+            --bg-dark: #030508;
+            --card-bg: rgba(10, 15, 25, 0.85);
         }
-        
-        /* Interactive Background Canvas */
-        #networkCanvas { 
-            position: fixed; top: 0; left: 0; z-index: 0; opacity: 0.6; 
+
+        body, html {
+            margin: 0; padding: 0; width: 100%;
+            background-color: var(--bg-dark); color: #d3d3d3;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden; scroll-behavior: smooth;
         }
+
+        /* Network Particles Background */
+        #networkCanvas { position: fixed; top: 0; left: 0; z-index: 0; opacity: 0.4; }
+
+        /* Container & Typography */
+        .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .mono { font-family: 'Share Tech Mono', monospace; }
         
-        /* Main Content Container */
-        .content { 
-            position: relative; z-index: 1; max-width: 1100px; 
-            margin: 0 auto; padding: 60px 20px; 
-        }
+        h1, h2, h3 { color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+        .glow-blue { text-shadow: 0 0 10px var(--voip-blue); color: var(--voip-blue); }
+        .glow-green { text-shadow: 0 0 10px var(--cyber-green); color: var(--cyber-green); }
         
-        /* Hacker/Glitch Name Intro */
-        .glitch { 
-            font-size: 3.5rem; font-weight: bold; text-transform: uppercase; 
-            position: relative; text-shadow: 0 0 10px #00ff41; margin-bottom: 5px; 
-        }
+        /* Section Spacing */
+        section { min-height: 80vh; padding: 80px 0; border-bottom: 1px solid rgba(0, 229, 255, 0.1); opacity: 0; transform: translateY(50px); transition: all 1s ease-out; }
+        section.visible { opacity: 1; transform: translateY(0); }
+
+        /* Hero Section */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; border: none; }
+        .hero h1 { font-size: 4rem; margin: 0; border-left: 5px solid var(--voip-blue); padding-left: 20px; }
+        .typewriter { font-size: 1.5rem; color: var(--voip-blue); margin-top: 10px; }
+
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 40px; }
+        .stat-box { background: var(--card-bg); border: 1px solid var(--voip-blue); padding: 20px; text-align: center; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 229, 255, 0.05); }
+        .stat-number { font-size: 2.5rem; color: var(--voip-blue); font-weight: bold; }
+
+        /* Timeline (Experience) */
+        .timeline { border-left: 2px solid var(--net-purple); padding-left: 30px; margin-top: 40px; }
+        .timeline-item { margin-bottom: 40px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -38px; top: 0; width: 14px; height: 14px; background: var(--net-purple); border-radius: 50%; box-shadow: 0 0 10px var(--net-purple); }
+        .timeline-item h3 { color: var(--net-purple); margin: 0 0 10px 0; }
+        .timeline-item p { margin: 5px 0; font-size: 1.1rem; }
+        ul.tech-list li { margin-bottom: 8px; list-style-type: square; color: #a0a0a0; }
+
+        /* Flash Cards (Projects) */
+        .flashcard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
+        .flip-card { background-color: transparent; height: 350px; perspective: 1000px; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: left; transition: transform 0.8s; transform-style: preserve-3d; }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 12px; padding: 25px; box-sizing: border-box; }
+        .flip-card-front { background: var(--card-bg); border: 1px solid var(--cyber-green); box-shadow: 0 0 20px rgba(0, 255, 65, 0.1); display: flex; flex-direction: column; justify-content: center; }
+        .flip-card-back { background: rgba(0, 40, 0, 0.9); border: 1px solid var(--cyber-green); transform: rotateY(180deg); overflow-y: auto; }
+        .flip-card-back ul { padding-left: 15px; }
+
+        /* Contact Terminal */
+        .terminal-form { background: #000; border: 1px solid var(--voip-blue); border-radius: 8px; padding: 30px; position: relative; box-shadow: 0 0 20px rgba(0, 229, 255, 0.2); }
+        .terminal-header { background: #111; padding: 10px; margin: -30px -30px 30px -30px; border-bottom: 1px solid var(--voip-blue); border-radius: 8px 8px 0 0; color: var(--voip-blue); font-family: monospace; display: flex; gap: 10px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: #ff5f56; }
+        .dot:nth-child(2) { background: #ffbd2e; }
+        .dot:nth-child(3) { background: #27c93f; }
         
-        /* Terminal Typing Effect */
-        .subtitle { 
-            font-size: 1.2rem; color: #00f2ff; margin-bottom: 50px; 
-            border-right: 2px solid #00f2ff; white-space: nowrap; overflow: hidden; 
-            animation: typing 3s steps(40, end), blink-caret .75s step-end infinite; 
-        }
-        
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #00f2ff; } }
-        
-        /* Dynamic Grid System */
-        .grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; 
-        }
-        
-        /* Neon Cards */
-        .card { 
-            background: rgba(0, 15, 0, 0.7); border: 1px solid #00ff41; 
-            border-radius: 8px; padding: 30px; 
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1); 
-            backdrop-filter: blur(5px); transition: all 0.4s ease; 
-            position: relative; overflow: hidden; 
-        }
-        
-        /* Hover Animation on Cards */
-        .card:hover { 
-            transform: translateY(-10px) scale(1.02); 
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.5); 
-            border-color: #00f2ff; color: #00f2ff; 
-        }
-        
-        /* Moving Scanline inside cards */
-        .card::before { 
-            content: ''; position: absolute; top: 0; left: -100%; 
-            width: 100%; height: 2px; background: #00f2ff; 
-            animation: scanline 4s linear infinite; 
-        }
-        @keyframes scanline { 100% { left: 100%; } }
-        
-        h2 { 
-            font-size: 1.5rem; border-bottom: 1px dashed #00ff41; 
-            padding-bottom: 10px; margin-top: 0; color: #fff;
-            text-shadow: 0 0 8px #fff;
-        }
-        
-        ul { list-style-type: none; padding: 0; }
-        li { margin-bottom: 15px; position: relative; padding-left: 20px; line-height: 1.5; }
-        li::before { content: '>'; position: absolute; left: 0; color: #00f2ff; font-weight: bold; }
-        
-        .highlight { color: #fff; font-weight: bold; }
-        .uptime { margin-top: 20px; font-size: 1.1rem; color: #00f2ff; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; margin-bottom: 8px; color: var(--voip-blue); font-family: monospace; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; background: transparent; border: 1px solid #333; color: #00ff41; font-family: monospace; font-size: 1rem; border-radius: 4px; transition: 0.3s; box-sizing: border-box; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--cyber-green); box-shadow: 0 0 10px rgba(0, 255, 65, 0.2); }
+        .submit-btn { background: transparent; color: var(--voip-blue); border: 1px solid var(--voip-blue); padding: 12px 30px; font-size: 1.2rem; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; font-family: 'Share Tech Mono'; }
+        .submit-btn:hover { background: var(--voip-blue); color: #000; box-shadow: 0 0 20px var(--voip-blue); }
 
     </style>
 </head>
 <body>
-    <!-- Background Canvas for Network Nodes -->
     <canvas id="networkCanvas"></canvas>
-    
-    <div class="content">
-        <div class="glitch">Yeshwanth Rao Yarasi</div>
-        <div class="subtitle">> Initiating Unified Communications & Sec_Protocol...</div>
-        
-        <div class="grid">
-            <div class="card">
-                <h2>[01] EXPERIENCE_LOG</h2>
-                <ul>
-                    <li><span class="highlight">Network Engineer</span> @ University of Iowa Health Care<br>Focus: Enterprise Voice & Migrations[cite: 2, 3]</li>
-                    <li><span class="highlight">Sr. System Engineer</span> @ Cognizant<br>Focus: UC SME, SIP/VoIP, PBX to Cloud[cite: 1, 3]</li>
-                    <li><span class="highlight">VoIP Network Engineer</span> @ Mindtree<br>Focus: Call Flow, Device Management[cite: 1, 3]</li>
-                </ul>
-                <div class="uptime">> Total System Uptime: 3.5+ Years</div>
-            </div>
-            
-            <div class="card">
-                <h2>[02] TECH_ARSENAL</h2>
-                <ul>
-                    <li><span class="highlight">Voice/Telephony:</span> Avaya PBX, MS Teams Voice, Five9, RingCentral[cite: 1, 3]</li>
-                    <li><span class="highlight">Network/Sec:</span> SIP Protocol Debugging, QoS, Packet Analysis, SBC Edge[cite: 1, 3]</li>
-                    <li><span class="highlight">Infrastructure:</span> VMware, Linux/Windows Server, PowerShell Scripting[cite: 3]</li>
-                </ul>
-            </div>
 
-            <div class="card">
-                <h2>[03] EXECUTED_PROJECTS</h2>
-                <ul>
-                    <li><span class="highlight">PSX Route Manager:</span> Internal routing utility for streamlined network migration & flow management.[cite: 1]</li>
-                    <li><span class="highlight">Cloud Migrations:</span> Led large-scale enterprise transitions from legacy PBX to modern UCaaS environments.[cite: 3]</li>
-                </ul>
+    <div class="container">
+        <!-- HERO SECTION -->
+        <section class="hero visible">
+            <h1 class="glow-blue">YESHWANTH RAO YARASI</h1>
+            <div class="typewriter mono">> Network Engineer | Unified Communications | Cyber Architect_</div>
+            <p style="max-width: 600px; font-size: 1.2rem; margin-top: 30px; line-height: 1.6;">
+                Bridging complex enterprise voice requirements with seamless, scalable, and secure network solutions. Over 3.5+ years of Tier III telecom support, cloud telephony migration, and protocol debugging.[cite: 1, 3]
+            </p>
+            <div class="stats-grid mono">
+                <div class="stat-box">
+                    <div class="stat-number">95%</div>
+                    <div>First-Contact Resolution[cite: 1]</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">200+</div>
+                    <div>Endpoints Configured[cite: 1]</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">98%</div>
+                    <div>SLA Compliance[cite: 1]</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">24/7</div>
+                    <div>Healthcare Ops Supported[cite: 1]</div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- EXPERIENCE TIMELINE -->
+        <section class="scroll-anim">
+            <h2 class="glow-purple" style="color: var(--net-purple); border-bottom: 1px solid var(--net-purple); padding-bottom: 10px;">> Command History [Experience]</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Network Engineer @ University of Iowa Health Care</h3>
+                    <p class="mono">[ March 2026 - Present ]</p>
+                    <ul class="tech-list">
+                        <li>Enterprise voice communication systems and large-scale migration strategies.[cite: 2, 3]</li>
+                        <li>Supporting critical communication infrastructure across hospital and clinic locations.[cite: 1]</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Senior System Engineer (UC SME) @ Cognizant</h3>
+                    <p class="mono">[ Dec 2022 - Aug 2023 ]</p>
+                    <ul class="tech-list">
+                        <li>Provided Tier-1/Tier-2 support for 2,000+ users globally.[cite: 1]</li>
+                        <li>Resolved complex SIP protocol issues, jitter, latency, and packet loss via CDR/CMR analysis.[cite: 1]</li>
+                        <li>Led PBX-to-VoIP transitions and optimized enterprise routing by shifting from inline VDN switches to a coverage path method to align with organizational standards.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>VoIP Network Engineer @ Mindtree</h3>
+                    <p class="mono">[ Aug 2021 - Dec 2022 ]</p>
+                    <ul class="tech-list">
+                        <li>Diagnosed SIP registration and call routing failures, achieving 95% first-contact resolution.[cite: 1]</li>
+                        <li>Updated internal runbooks identifying behavioral variances of specific "star code" features on softphones compared to physical handsets.</li>
+                        <li>Designed Auto Attendants, managed SIP trunk connectivity, and optimized bandwidth utilization.[cite: 1, 3]</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FLASH CARDS (PROJECTS) -->
+        <section class="scroll-anim">
+            <h2 class="glow-green" style="border-bottom: 1px solid var(--cyber-green); padding-bottom: 10px;">> Deployed Architectures [Projects]</h2>
+            <div class="flashcard-grid">
+                <!-- Card 1 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="glow-green">PSX Route Manager</h3>
+                            <p class="mono">> Internal Network Routing Utility</p>
+                            <p style="color: #888; font-size: 0.9rem;">Hover to decrypt technical specifications...</p>
+                        </div>
+                        <div class="flip-card-back mono">
+                            <h4 style="color: #fff;">System Output:</h4>
+                            <ul>
+                                <li>Streamlined call flow management and enterprise network migration tasks.[cite: 1]</li>
+                                <li>Replaced manual legacy configurations with a unified operational UI.[cite: 1]</li>
+                                <li>Integrated secure audit logging and scalable routing logic.[cite: 1]</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="glow-green">MetroHealth Secure Network</h3>
+                            <p class="mono">> HIPAA-Compliant Architecture</p>
+                            <p style="color: #888; font-size: 0.9rem;">Hover to decrypt technical specifications...</p>
+                        </div>
+                        <div class="flip-card-back mono">
+                            <h4 style="color: #fff;">System Output:</h4>
+                            <ul>
+                                <li>Designed multi-site architecture in Cisco Packet Tracer.[cite: 3]</li>
+                                <li>Implemented VLANs, OSPF routing, and edge firewalls.[cite: 3]</li>
+                                <li>Deployed fault-tolerant DNS, DHCP, and secure email services.[cite: 3]</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3 class="glow-green">Cyber Forensics & Exploit Lab</h3>
+                            <p class="mono">> Threat Investigation & Mitigation</p>
+                            <p style="color: #888; font-size: 0.9rem;">Hover to decrypt technical specifications...</p>
+                        </div>
+                        <div class="flip-card-back mono">
+                            <h4 style="color: #fff;">System Output:</h4>
+                            <ul>
+                                <li>Conducted forensic triage using Autopsy, Volatility, and Wireshark.[cite: 3]</li>
+                                <li>Identified SQL data exfiltration via PowerShell logs.[cite: 3]</li>
+                                <li>Exploited and analyzed real-world CVEs in secure lab environments.[cite: 3]</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS & CERTS -->
+        <section class="scroll-anim">
+            <h2 class="glow-blue" style="border-bottom: 1px solid var(--voip-blue); padding-bottom: 10px;">> Certified Protocols [Skills & Education]</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 40px; margin-top: 30px;">
+                <div style="flex: 1; min-width: 300px; background: var(--card-bg); padding: 25px; border-radius: 8px; border: 1px solid #333;">
+                    <h3 style="color: var(--voip-blue);">Academics & Credentials</h3>
+                    <ul class="tech-list mono">
+                        <li>Master of Science in Cybersecurity & Networks - Univ. of New Haven (GPA: 3.7)[cite: 1, 3]</li>
+                        <li>B.E. in Computer Science - CMR Institute of Technology[cite: 1, 3]</li>
+                        <hr style="border-color: #333; margin: 15px 0;">
+                        <li style="color: #fff;">[Cert] Microsoft Teams Certified Administrator (MS-700)[cite: 1, 2, 3]</li>
+                        <li style="color: #fff;">[Cert] Five9 Cloud Contact Center Certified Admin[cite: 1, 2, 3]</li>
+                        <li style="color: #fff;">[Cert] Microsoft Azure Fundamentals (AZ-900)[cite: 1, 3]</li>
+                        <li style="color: #fff;">[Cert] ITIL Foundation (Incident & Change Management)[cite: 1]</li>
+                    </ul>
+                </div>
+                <div style="flex: 1; min-width: 300px; background: var(--card-bg); padding: 25px; border-radius: 8px; border: 1px solid #333;">
+                    <h3 style="color: var(--voip-blue);">Technical Matrix</h3>
+                    <ul class="tech-list mono">
+                        <li><strong>VoIP/Telephony:</strong> Avaya PBX, SIP Protocol Analysis, RingCentral, Call Flows[cite: 1, 3]</li>
+                        <li><strong>Network:</strong> Wireshark, QoS, VLAN, OSPF, Traffic Analysis[cite: 1, 3]</li>
+                        <li><strong>Infrastructure:</strong> VMware, PowerShell, Linux/Windows Servers[cite: 3]</li>
+                        <li><strong>Healthcare IT:</strong> HIPAA, E911 Compliance, 24/7 Ops, Clinical Workflows[cite: 1]</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT TERMINAL -->
+        <section class="scroll-anim">
+            <h2 class="glow-green" style="border-bottom: 1px solid var(--cyber-green); padding-bottom: 10px;">> Secure Communication Channel [Contact]</h2>
+            <p class="mono" style="margin-bottom: 30px; color: #888;">// Transmit encrypted data packets directly to my inbox.</p>
+            
+            <div class="terminal-form">
+                <div class="terminal-header">
+                    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    <span style="margin-left: 10px;">root@yash-network:~# ./initiate_contact.sh</span>
+                </div>
+                
+                <!-- FORMSUBMIT INTEGRATION -->
+                <form action="https://formsubmit.co/yyeshwanth004@gmail.com" method="POST">
+                    <!-- Anti-spam & Config -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="New Comm_Link from Portfolio Website">
+                    
+                    <div class="form-group">
+                        <label>> Enter Identification [Name]:</label>
+                        <input type="text" name="name" required placeholder="John_Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>> Reply Protocol [Email]:</label>
+                        <input type="email" name="email" required placeholder="john@enterprise.com">
+                    </div>
+                    <div class="form-group">
+                        <label>> Purpose of Transmission [Subject]:</label>
+                        <input type="text" name="purpose" required placeholder="Job Opportunity / Network Consultation">
+                    </div>
+                    <div class="form-group">
+                        <label>> Packet Payload [Message]:</label>
+                        <textarea name="message" rows="5" required placeholder="Execute data transmission here..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">> TRANSMIT_DATA</button>
+                </form>
+            </div>
+        </section>
+
     </div>
 
-    <!-- JavaScript for Dynamic Network Node Animation -->
+    <!-- SCRIPTS -->
     <script>
+        // 1. Particle Network Animation (Performance Optimized)
         const canvas = document.getElementById('networkCanvas');
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
         let particles = [];
         
-        // Resize canvas dynamically
         window.addEventListener('resize', () => {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
         });
 
-        // Particle Class (Represents VoIP/Network Nodes)
         class Particle {
             constructor() {
                 this.x = Math.random() * width;
@@ -147,40 +297,32 @@
                 this.radius = Math.random() * 2 + 1;
             }
             update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                // Bounce off walls
+                this.x += this.vx; this.y += this.vy;
                 if (this.x < 0 || this.x > width) this.vx *= -1;
                 if (this.y < 0 || this.y > height) this.vy *= -1;
             }
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = '#00f2ff';
+                ctx.fillStyle = 'rgba(0, 229, 255, 0.6)';
                 ctx.fill();
             }
         }
 
-        // Generate Nodes
-        for (let i = 0; i < 120; i++) {
-            particles.push(new Particle());
-        }
+        for (let i = 0; i < 90; i++) particles.push(new Particle());
 
-        // Animate Connections
         function animate() {
             ctx.clearRect(0, 0, width, height);
             for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-                // Draw lines between close nodes to simulate network routing
+                particles[i].update(); particles[i].draw();
                 for (let j = i; j < particles.length; j++) {
                     let dx = particles[i].x - particles[j].x;
                     let dy = particles[i].y - particles[j].y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 130) {
+                    if (distance < 120) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 255, 65, ${1 - distance/130})`;
-                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = `rgba(181, 55, 242, ${1 - distance/120})`;
+                        ctx.lineWidth = 0.5;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.stroke();
@@ -190,6 +332,17 @@
             requestAnimationFrame(animate);
         }
         animate();
+
+        // 2. Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.scroll-anim').forEach((el) => observer.observe(el));
     </script>
 </body>
 </html>
