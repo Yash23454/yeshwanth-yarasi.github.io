@@ -668,15 +668,25 @@
 
         function processCall() {
             if (dialBuffer === '*#004#') {
+                // Phone UI close chesi overlay chupinchadam
                 document.getElementById('softphone').classList.remove('active');
                 const overlay = document.getElementById('easter-egg-overlay');
                 overlay.style.display = 'flex';
+                
                 setTimeout(() => {
                     overlay.style.display = 'none';
                     dialBuffer = '';
                     document.getElementById('sp-display').innerText = '';
-                    alert("Resume Download Initialized! (Demo feature)");
-                }, 3000);
+                    
+                    // ACTUAL PDF DOWNLOAD LOGIC
+                    const link = document.createElement('a');
+                    link.href = 'Yeshwanth_Rao_Yarasi_Resume.pdf'; // Idhi nee GitHub lo unna file name tho match avvali
+                    link.download = 'Yeshwanth_Rao_Yarasi_Resume.pdf'; // User download cheskunnaka ee peru tho save avthundi
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                }, 3000); // 3 seconds overlay chupinchi download start avthundi
             } else {
                 document.getElementById('sp-display').innerText = "CONNECTION FAILED";
                 setTimeout(() => { dialBuffer = ""; document.getElementById('sp-display').innerText = ""; }, 1500);
