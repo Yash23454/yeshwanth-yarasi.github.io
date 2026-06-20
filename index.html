@@ -174,11 +174,32 @@
             .hero h1 { font-size: 3.5rem; }
             .cli-terminal { height: 400px; }
         }
+        
+        /* 1. DECRYPTED PROFILE PICTURE */
+        .profile-container { position: relative; width: 150px; height: 150px; margin-bottom: 20px; border-radius: 10px; overflow: hidden; border: 2px solid var(--cyber-green); box-shadow: 0 0 15px rgba(0,255,65,0.2); }
+        .profile-pic { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(200%) blur(3px); transition: all 0.5s ease; }
+        .glitch-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) 1px, transparent 1px, transparent 2px); pointer-events: none; z-index: 2; transition: opacity 0.5s; display: flex; justify-content: center; align-items: center; text-align: center;}
+        .decrypt-text { color: var(--cyber-green); font-family: 'Share Tech Mono'; font-size: 0.8rem; background: rgba(0,0,0,0.8); padding: 2px 5px; animation: blinker 1s infinite; }
+        .profile-container:hover .profile-pic { filter: grayscale(0%) contrast(100%) blur(0px); }
+        .profile-container:hover .glitch-overlay { opacity: 0; }
+
+        /* 2. LIVE PACKET SNIFFER */
+        #packet-stream { position: fixed; top: 0; left: 20px; width: 350px; height: 100vh; pointer-events: none; z-index: 0; overflow: hidden; opacity: 0.7;}
+        .packet { color: rgba(0, 229, 255, 0.4); font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; position: absolute; bottom: -20px; white-space: nowrap; animation: floatUp 8s linear forwards; }
+        @keyframes floatUp { to { transform: translateY(-100vh); opacity: 0; } }
+
+        /* 3. RETRO CRT MODE (KONAMI CODE) */
+        body.crt-mode { --bg-dark: #050505; --voip-blue: #ffb000; --cyber-green: #ffb000; --net-purple: #ffb000; color: #ffb000; text-shadow: 0 0 3px #ffb000; }
+        body.crt-mode::after { content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06)); z-index: 9999; background-size: 100% 3px, 3px 100%; pointer-events: none; }
+        .crt-off-anim { animation: turn-off 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        @keyframes turn-off { 0% { transform: scale(1, 1.3) translate3d(0, 0, 0); filter: brightness(1); } 60% { transform: scale(1, 0.001) translate3d(0, 0, 0); filter: brightness(10); } 100% { transform: scale(0, 0.0001) translate3d(0, 0, 0); filter: brightness(0); } }
     </style>
 </head>
 <body>
     <!-- NETWORK CANVAS -->
     <canvas id="networkCanvas"></canvas>
+    <!-- LIVE PACKET SNIFFER -->
+    <div id="packet-stream"></div>
 
     <!-- SECURITY ALERT BOX -->
     <div id="security-alert">
@@ -229,6 +250,13 @@
                     <li>[1] Try typing <b>'sudo su'</b> in the System Terminal below.</li>
                     <li>[2] Dial the secret code on the Softphone dialer (bottom right icon).</li>
                 </ul>
+            </div>
+            <!-- DECRYPTED IMAGE FEATURE -->
+            <div class="profile-container">
+                <img src="profile.jpg" alt="Yeshwanth" class="profile-pic" onerror="this.src='https://via.placeholder.com/150/000000/00ff41?text=YASH'">
+                <div class="glitch-overlay">
+                    <span class="decrypt-text">[DECRYPTING...]</span>
+                </div>
             </div>
             <h1 class="glow-blue">YESHWANTH RAO YARASI</h1>
             <div class="typewriter mono">> Senior Unified Communications & Network Engineer</div>
@@ -743,6 +771,67 @@
         // Scroll observer
         const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.scroll-anim').forEach((el) => observer.observe(el));
+
+        // --- 6. LIVE PACKET SNIFFER LOGIC ---
+        const packetStream = document.getElementById('packet-stream');
+        const protocols = ['TCP', 'UDP', 'SIP/2.0', 'RTP', 'TLSv1.2'];
+        const ips = ['192.168.1.45', '10.0.0.12', '172.16.254.1', '8.8.8.8', '10.24.1.88'];
+        
+        setInterval(() => {
+            const p = document.createElement('div');
+            p.className = 'packet';
+            const proto = protocols[Math.floor(Math.random() * protocols.length)];
+            const src = ips[Math.floor(Math.random() * ips.length)];
+            const dst = ips[Math.floor(Math.random() * ips.length)];
+            p.innerText = `[${proto}] ${src}:5060 -> ${dst}:5060 - Length: ${Math.floor(Math.random() * 500 + 40)}`;
+            p.style.left = Math.random() * 20 + 'px';
+            packetStream.appendChild(p);
+            setTimeout(() => { if (p.parentNode) p.parentNode.removeChild(p); }, 8000);
+        }, 600);
+
+        // --- 7. KONAMI CODE (RETRO CRT MODE) & ESC REVERT ---
+        let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            // Check for Konami Code
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    document.body.classList.add('crt-mode');
+                    konamiIndex = 0;
+                    alert("RETRO SYSTEM INITIALIZED. Press 'ESC' to abort.");
+                }
+            } else {
+                konamiIndex = 0;
+            }
+
+            // Check for ESC key to revert
+            if (e.key === 'Escape' && document.body.classList.contains('crt-mode')) {
+                document.body.classList.add('crt-off-anim');
+                setTimeout(() => {
+                    document.body.classList.remove('crt-mode');
+                    document.body.classList.remove('crt-off-anim');
+                }, 600); // Waits for the turn-off animation
+            }
+        });
+        if (inputVal === 'reboot') {
+                    if (document.body.classList.contains('crt-mode')) {
+                        response += "> Rebooting system...\n> Restoring modern UI protocols...\n";
+                        cliOutput.innerHTML += response;
+                        document.body.classList.add('crt-off-anim');
+                        setTimeout(() => {
+                            document.body.classList.remove('crt-mode');
+                            document.body.classList.remove('crt-off-anim');
+                        }, 600);
+                    } else {
+                        response += "> System is already running optimally. No reboot required.\n";
+                        cliOutput.innerHTML += response;
+                    }
+                    cmdInput.value = '';
+                    cliOutput.scrollTop = cliOutput.scrollHeight;
+                    return;
+                }
     </script>
 </body>
 </html>
